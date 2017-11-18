@@ -9,12 +9,16 @@ import { AppComponent } from './app.component';
 import { CoursesComponent } from './component/courses/courses.component';
 import { FavoriteComponent } from './component/favorite/favorite.component';
 import { FirstModuleModule } from './modules/first-module/first-module.module';
+import { PaginationComponent } from './component/pagination/pagination.component';
+import { InputFormatDirective } from './directive/input-format.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoursesComponent,
-    FavoriteComponent
+    FavoriteComponent,
+    PaginationComponent,
+    InputFormatDirective
   ],
   imports: [
     BrowserModule,
