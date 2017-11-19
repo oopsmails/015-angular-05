@@ -450,7 +450,7 @@ Reactive (model-driven): Code
 
 --> ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)"
 
-ngModel directive
+ngModel directive, need a name attribute!
 
 Angular sees <form>, then adding ngForm ...
 
