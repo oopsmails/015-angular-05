@@ -479,9 +479,9 @@ submit(f) {
 	f.value.firstName ...
 }
 
---> ngModel, ngModelGroup
+--> ngModel, ngModelGroup, ngForm(ngSubmit) 33:00
 
-<div ngModelGroup="contact" #contact="ngModelGroup">
+<div ngModelGroup="contact" #contact="ngModelGroup"> --> this is useful if to validate the entire group as a whole
 
 	<div class="form-group">
 		<label for="firstName">First Name<label>
@@ -503,16 +503,31 @@ submit(f) {
 f.value.contact
 
 
+div.checkbox>label>input[type='checkbox']
+
+div.form-group>label[for='contactMethod']+select[id='contactMethod'].form-control
+
+
 ==> 
 
 FormControl: one input field, ::> ngModel
 FormGroup: multple input fields, ::> ngForm (auto created, uses ngSubmit to expose output attributes), ngModelGroup (cannot submit because it is just a part of a form)
 
 
+==> option
+<option *ngFor="let method of contactMethods" [value]="method.id">{{ method.name }}</option>
+vs.
+<option *ngFor="let method of contactMethods" [ngValue]="method">{{ method.name }}</option>
+
+
 [value]="method.id" ::> only binding id
 [ngValue]="method" ::> binding complex object
 
 
+--> select multiple options
+<select multiple ngModel name="contactMethod" id="contactMethod">\
+vs.
+<select ngModel name="contactMethod" id="contactMethod">
 
 ==>
 
