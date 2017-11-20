@@ -657,6 +657,12 @@ NewCourseFormComponent
 
 10-Routing and Navigation
 
+==> Steps
+
+Configure the routes
+Add a router outlet
+Add links
+
 
 
 
