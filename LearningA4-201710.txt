@@ -556,7 +556,36 @@ Need to ReactiveFormsModule in app.module.ts
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-==> 
+==> AsyncValidatorFn
+
+interface AsyncValidatorFn { 
+  (c: AbstractControl): Promise<ValidationErrors|null>|Observable<ValidationErrors|null>
+}
+
+==> Promise
+
+var Promise: new PromiseConstructor<T>(
+
+executor: (resolve: (value?: T | PromiseLike<T>) => void, 
+			reject: (reason?: any) => void) => void
+			
+
+) => Promise<T>
+
+--> resolve is a function, that takes a value and returns void
+--> reject, takes a function called reason (optional, takes any as parameter and returns void), and returns void
+
+--> simplified as 
+executor: (resolve, reject) => void
+
+::> if success, use resolve function to return the real returning value, e.g, resolve({ result: true })
+::> if fail, use reject function to return reason of failure, e.g, reject({ error: 'user error' })
+
+
+-->
+formControlName="username", attribute name "pending", value is true if any validator is in progress.
+
+
 
 
 
