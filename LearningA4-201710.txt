@@ -432,8 +432,61 @@ fonts.google.com
 
 
 
+===========================================
+
+06-Directives
+====> leading *, telling Anuglar to re-write by using <ng-template>
 
 
+====> *ngFor, two variables
+
+<ul>
+  <li *ngFor="let course of courses; index as i">
+    {{ i }} - {{ course.name }}
+  </li>
+</ul>
+
+====> 28:25
+trackBy, this will change how Angular tracks objects, 
+for big collection, not reload, track instead to improve performance!
+
+
+
+<ul>
+  <li *ngFor="let course of courses; index as i; trackBy: trackCourse">
+    {{ i }} - {{ course.name }}
+  </li>
+</ul>
+
+
+trackCourse(index, course) {
+	return course ? course.id : undefined;
+}
+
+====> 36:09
+[ngClass]
+[ngStyle]
+
+
+====> 36:30 Safe Traversal Operator
+
+Error: TypeError: Cannot read property 'name' of null
+
+Could use ngIf, e.g,
+
+<span *ngIf="task.assignee">{{ task.assignee.name }}</span>
+
+Can use ?
+
+<span">{{ task.assignee?.name }}</span>
+
+====> 39:16 Custom Directives
+
+e.g, format phone number
+
+ng g d input-format
+
+HostListener from @angular/core
 
 
 
@@ -441,7 +494,7 @@ fonts.google.com
 
 ===========================================
 
-07 Template-driven Forms
+07 Template-driven Forms ==> contact-form
 
 00:07:20
 
@@ -541,7 +594,7 @@ debugging on page:
 
 ===========================================
 
-08 Reactive Forms
+08 Reactive Forms ==> signup-form, array-form
 
 ==> not using ngModel in html, instead, create ngControl instance in the component.ts
 
@@ -587,63 +640,14 @@ formControlName="username", attribute name "pending", value is true if any valid
 
 
 
+==> form array: newcourse-form
 
-
-===========================================
-
-06-Directives
-====> leading *, telling Anuglar to re-write by using <ng-template>
-
-
-====> *ngFor, two variables
-
-<ul>
-  <li *ngFor="let course of courses; index as i">
-    {{ i }} - {{ course.name }}
-  </li>
-</ul>
-
-====> 28:25
-trackBy, this will change how Angular tracks objects, 
-for big collection, not reload, track instead to improve performance!
+NewCourseFormComponent
 
 
 
-<ul>
-  <li *ngFor="let course of courses; index as i; trackBy: trackCourse">
-    {{ i }} - {{ course.name }}
-  </li>
-</ul>
 
 
-trackCourse(index, course) {
-	return course ? course.id : undefined;
-}
-
-====> 36:09
-[ngClass]
-[ngStyle]
-
-
-====> 36:30 Safe Traversal Operator
-
-Error: TypeError: Cannot read property 'name' of null
-
-Could use ngIf, e.g,
-
-<span *ngIf="task.assignee">{{ task.assignee.name }}</span>
-
-Can use ?
-
-<span">{{ task.assignee?.name }}</span>
-
-====> 39:16 Custom Directives
-
-e.g, format phone number
-
-ng g d input-format
-
-HostListener from @angular/core
 
 ===========================================
 

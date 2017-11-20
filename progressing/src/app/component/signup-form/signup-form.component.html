@@ -26,5 +26,35 @@
         type="text" 
         class="form-control">
   </div>
+
+  <div formGroupName="account">
+      <div class="form-group">
+          <label for="accountNumber">Account Number</label>
+          <input 
+            formControlName="accountNumber"
+            id="accountNumber" 
+            type="text" 
+            class="form-control">
+            <div *ngIf="accountNumber.pending">Checking for uniqueness ...</div>
+            <div *ngIf="accountNumber.touched && accountNumber.invalid" class="alert alert-danger">
+              <div *ngIf="accountNumber.errors.required">accountNumber is required.</div>
+              <div *ngIf="accountNumber.errors.minlength">accountNumber should be minimum {{ accountNumber.errors.minlength.requiredLength }} characters.</div>
+              <div *ngIf="accountNumber.errors.cannotContainSpace">accountNumber cannot contain space.</div>
+              <div *ngIf="accountNumber.errors.shouldBeUnique">accountNumber is already taken.</div>
+            </div>
+      </div>
+      <div class="form-group">
+          <label for="passCode">Passcode</label>
+          <input 
+            formControlName="passCode"    
+            id="passCode" 
+            type="text" 
+            class="form-control">
+      </div>
+  </div>
+  
   <button class="btn btn-primary" type="submit">Sign Up</button>
+  <p>
+    {{ form.value | json }}
+  </p>
 </form>

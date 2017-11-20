@@ -13,6 +13,7 @@ import { PaginationComponent } from './component/pagination/pagination.component
 import { InputFormatDirective } from './directive/input-format.directive';
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
+import { NewcourseFormComponent } from './component/newcourse-form/newcourse-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SignupFormComponent } from './component/signup-form/signup-form.compone
     PaginationComponent,
     InputFormatDirective,
     ContactFormComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    NewcourseFormComponent
   ],
   imports: [
     BrowserModule,
