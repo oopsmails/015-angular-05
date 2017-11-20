@@ -510,7 +510,7 @@ div.form-group>label[for='contactMethod']+select[id='contactMethod'].form-contro
 
 ==> 
 
-FormControl: one input field, ::> ngModel
+FormControl: one input field, ::> ngModel, angular will internally create an instance of ngControl class and associate with the input field!
 FormGroup: multple input fields, ::> ngForm (auto created, uses ngSubmit to expose output attributes), ngModelGroup (cannot submit because it is just a part of a form)
 
 
@@ -543,6 +543,20 @@ debugging on page:
 
 08 Reactive Forms
 
+==> not using ngModel in html, instead, create ngControl instance in the component.ts
+
+==> AbstractControl is a super class of {FormControl, FormGroup}
+
+==> 
+
+Template parse errors:
+Can't bind to 'formGroup' since it isn't a known property of 'form'. ("<form [ERROR ->][formGroup]="form">
+
+Need to ReactiveFormsModule in app.module.ts
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+==> 
 
 
 

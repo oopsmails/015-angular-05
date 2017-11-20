@@ -1,7 +1,7 @@
 import { UsertokenService } from './service/usertoken/usertoken.service';
 import { CoursesService } from './service/courses/courses.service';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,6 +12,7 @@ import { FirstModuleModule } from './modules/first-module/first-module.module';
 import { PaginationComponent } from './component/pagination/pagination.component';
 import { InputFormatDirective } from './directive/input-format.directive';
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
+import { SignupFormComponent } from './component/signup-form/signup-form.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +21,13 @@ import { ContactFormComponent } from './component/contact-form/contact-form.comp
     FavoriteComponent,
     PaginationComponent,
     InputFormatDirective,
-    ContactFormComponent
+    ContactFormComponent,
+    SignupFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     FirstModuleModule
   ],
