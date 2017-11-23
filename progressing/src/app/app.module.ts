@@ -1,3 +1,4 @@
+import { Pagination2Component } from './component/pagination/pagination2.component';
 import { UsertokenService } from './service/usertoken/usertoken.service';
 import { CoursesService } from './service/courses/courses.service';
 import { HttpModule } from '@angular/http';
@@ -24,7 +25,8 @@ import { NewcourseFormComponent } from './component/newcourse-form/newcourse-for
     InputFormatDirective,
     ContactFormComponent,
     SignupFormComponent,
-    NewcourseFormComponent
+    NewcourseFormComponent,
+    Pagination2Component
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.pageNumber = 0;
-    this.itemCount = 33;
+    this.itemCount = 55;
     this.itemsPerPage = 5;
     this.numberOfPageCombine = 3;
     this.backgroundType = 'light';
@@ -36,8 +36,14 @@ export class AppComponent implements OnInit {
     console.log("Favorite changed: ", eventArgs);
   }
 
-  onPageClick(pageClickEventArgs: PageClickEventArgs) {
+  onPageClick(pageClickEventArgs: PageClickEventArgs): void {
     console.log('onPageClick, pageClickEventArgs: ', pageClickEventArgs);
+  }
+
+  onPageClick2(indexRet: number[]): void {
+    indexRet.forEach((item: number) => {
+      console.log('pageClick, index array: ', item);
+    });
   }
   
 }

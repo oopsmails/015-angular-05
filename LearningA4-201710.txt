@@ -1,4 +1,3 @@
-
 -->
 
 https://github.com/mosh-hamedani/organic-shop
@@ -297,6 +296,7 @@ And using its selector in a template as you would a component that is part of yo
 
 ===========================================
 
+====> 16-ReduxToDoList
 
 angular 4 redux
 
@@ -320,6 +320,24 @@ https://github.com/vsavkin/state_management_ngrx4
 
 ::>
 https://blog.realworldfullstack.io/real-world-angular-part-4-state-of-my-spa-10bf90c5a15
+
+
+
+==> To update library, 
+
+PS C:\Github\angular-05\16-ReduxToDoList> nvm install 7.9.0
+PS C:\Github\angular-05\16-ReduxToDoList> nvm use 7.9.0
+Now using node v7.9.0 (64-bit)
+
+
+npm install redux ng2-redux --save
+npm install @angular-redux/store --save
+
+
+Uninstalled angular cli npm uninstall @angular/cli -g
+Installed rxJS npm install rxjs
+Cleared cache npm cache clean
+Installed angular cli npm install @angular/cli -g
 
 
 

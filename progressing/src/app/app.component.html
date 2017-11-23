@@ -89,6 +89,19 @@
         (pageClick)="onPageClick($event)"
         >
     </app-pagination>
+
+    <app-pagination2
+        [pageNumber]="pageNumber"
+        [itemCount]="itemCount"
+        [itemsPerPage]="itemsPerPage"
+        [numberOfPageCombine]="numberOfPageCombine"
+        [backgroundType]="backgroundType"
+        [hiddenArrows]="hiddenArrows"
+        [disableNavigation]="disableNavigation"
+        (pageClick2)="onPageClick2($event)"
+    >
+    </app-pagination2>
+    
     <br/>
     <br/>
     <br/>
