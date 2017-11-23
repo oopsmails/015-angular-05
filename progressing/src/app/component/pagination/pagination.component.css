@@ -70,6 +70,6 @@
     border-right: 1px solid #02008a;
 }
 
-.progress-pagination__number__item--selected--single::before {
+.progress-pagination__number__item--selected--single {
     border: 1px solid #02008a;
 }
