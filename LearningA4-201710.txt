@@ -1,25 +1,30 @@
--->
+================================================
+
+00-Setting up ....
 
 https://github.com/mosh-hamedani/organic-shop
 
 https://github.com/ritwickdey/organic-shop
 
 
-
 /c/Albert/Angular4/organic-shop-master
-
-
-node --version
-npm install -g @angular/cli
-ng --version
-
-
 
 {
     "workbench.startupEditor": "newUntitledFile",
     "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
 }
 
+
+https://github.com/ritwickdey/organic-shop
+
+
+====> new project, skipping npm install, then use yarn
+
+node --version
+npm install -g @angular/cli
+ng --version
+
+ng new progressing --skip-install
 
 --> installing packages for tooling via npm. stuck
 I was having the same issue. I resolved by using yarn. Follow below steps
@@ -29,7 +34,7 @@ Install yarn through npm using the below command
 npm install yarn --global
 Create your application using ng new but skip installing packages using the below command. You can install them manually using yarn
 
-Or… you can just tell the CLI to use Yarn instead of NPM!
+Or¡­ you can just tell the CLI to use Yarn instead of NPM!
 ng set --global packageManager=yarn
 
 
@@ -37,18 +42,11 @@ ng new project-name --skip-install
 cd project-name
 yarn install This will install your dependencies super-fast
 
+npm install --save firebase
+npm install --save bootstrap
+npm install --save bootstrap@next
 
--->
-create a Firebase project??
-
-
-
-https://github.com/ritwickdey/organic-shop
-
-
-
-
--->
+====> ng g c ...
 
 https://stackoverflow.com/questions/29786887/how-can-i-make-multiple-projects-share-node-modules-directory
 
@@ -61,393 +59,13 @@ first navigate to app folder by
 
 cd src
 cd app
-then if you wants to create folder in app then simply type
-ng g c test
-
-it will create in app folder
-now you wants to create component inside of test then type
-ng g c test/test2
-it will create new component in test folder
-
-
-
-<app-root></app-root>
-
-<app-courses></app-courses>
-
-
-
-ng new progressing --skip-install
-
-
-npm install --save firebase
-npm install --save bootstrap
-npm install --save bootstrap@next
-
-
-
-================================================
-
-Deployment:
-
-ng build -prod
-
-==>
-Github Pages:
-https://pages.github.com/
-
---> static contents, html, css, javascript ...
-
-npm i -g angular-cli-ghpages --> github pages
-
-ng build --prod --base-href="https://oopsmails.github.io/nameofrepo/" --> trailing slash!
-
-angular-cli-ghpages --> or short form: ngh
-
-ngh --no-silent --> for displaying real error message: e.g, permission denied
-
-Go to: https://oopsmails.github.io/nameofrepo/
-
-Shortcut: package.json, scritp, 
-
-"deploy:gh": "ng build --prod --base-href='.../' && ngh" --> or sudo ngh
-
-
-==> Firebase: backend, cloud, messaging, nosql database ...
-
-https://console.firebase.google.com/
-
-npm i -g firebase-tools
-
-firebase login
-
-firebase init
-
-:: select hosting 
-:: open firebase.json, define the folder to deploy
-
-{
-	"hosting": {
-		"public": "dist",
-		"rewrites": [
-			{
-				"source": "**",
-				"destination": "/index.html"
-			}
-		]
-	}
-}
-
-ng build --prod
-firebase deploy
-
-:: url: https://app-name.firebaseapp.com/
-
-Project Console: https://console.firebase.google.com/project/progressing-oopsmails/overview
-Hosting URL: https://progressing-oopsmails.firebaseapp.com
-
-==> Heroku: backend!!!! Node.js!!!
-
-heroku, register
-
-heroku cli, install
-
-heroku --version
-heroku login
-
-
-PS C:\Liu\Angular4\a4-mosh-course\progressing> heroku --version
-heroku-cli/6.14.36-15f8a25 (windows-x64) node-v8.7.0
-PS C:\Liu\Angular4\a4-mosh-course\progressing> heroku login
-Enter your Heroku credentials:
-Email: oopsmails@gmail.com
-Password: ************
-Logged in as oopsmails@gmail.com
-PS C:\Liu\Angular4\a4-mosh-course\progressing>
-
-
-heroku create
-heroku open
-
-package.json
-:: move angular-cli to dependencies from dev-dependencies
-
-:: Node.js, server.js
-
-npm i express --save
-
-package.json: node server.js
-
----------------------------------------
-
-
-
-========================================
-
---> create Modules
-
-1. C:\Albert\Angular4\a4-course>ng g module modules/first-module
-  create src/app/modules/first-module/first-module.module.ts (195 bytes)
-
-2. C:\Albert\Angular4\a4-course>ng g c modules/first-module
-  create src/app/modules/first-module/first-module.component.html (31 bytes)
-  create src/app/modules/first-module/first-module.component.spec.ts (664 bytes)
-  create src/app/modules/first-module/first-module.component.ts (292 bytes)
-  create src/app/modules/first-module/first-module.component.css (0 bytes)
-  update src/app/modules/first-module/first-module.module.ts (280 bytes)
-
-3. in FirstModuleModule
-
-exports: [
-	FirstModuleComponent // <-- this!
-]
-
-4. in client AppModule
-
-imports: [
-	BrowserModule,
-	FirstModuleModule // import it in imports, NOT declarations
-],
-
-
-5. in client, use it,
-
-<app-first-module>Testing first-module</app-first-module>
-
-
-6. npm install ng-packagr --save-dev
-
-==> !!!!!!!!!!! continue to follow at home, https://medium.com/@ngl817/building-an-angular-4-component-library-with-the-angular-cli-and-ng-packagr-53b2ade0701e
-
-
---> As per the ng-packagr docs, we’ll need to add two files to our project, ng-package.json and public_api.ts
-
-7.
-
-Add the following to ng-package.json:
-{
-  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
-  "lib": {
-    "entryFile": "public_api.ts"
-  }
-}
-
-8. export your first-module.module.ts from public_api.ts:
-
-export * from './src/app/modules/first-module/first-module.module.ts'
-
-9. package.json
-
-::> add script
-"packagr": "ng-packagr -p ng-package.json"
-
-::>
-"private": false,
-
-10. create package,
-
-npm run packagr
-
-....
-Built Angular library from C:\Liu\Angular4\a4-mosh-course\progressing, written to C:\Liu\Angular4\a4-mosh-course\pro
-gressing\dist
-
-
-11.a. Pack it for local development
-
-
-PS C:\Liu\Angular4\a4-mosh-course\progressing\dist> npm pack
-progressing-0.0.0.tgz
-PS C:\Liu\Angular4\a4-mosh-course\progressing\dist>
-
-The 0.0.0 part comes from the top of your package.json. You’ll want to keep bumping that up as you start to truly deploy your component library for consumption.
-From other Angular applications on your system that require your component library, you can npm install ../some-relative-path/dist/my-component-library-0.0.0.tgz to install your component library into your application.
-
-
-11.b. Publish it on npm
-
-
-
-Once you login to your npm account with npm login you can publish your component library with npm publish dist. Just be sure that you have a unique package name (hint: my-component-library may be taken). Once published, you’ll be able to install your component library from npm with npm install my-component-library.
-
-
-12. Consuming your component library
-
-
-Once installed, you can import your header component into any application’s app.module.ts, by including it in its @NgModule imports array…
-import { HeaderModule } from 'my-package-name';
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    HeaderModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-And using its selector in a template as you would a component that is part of your application.
-
-
-
-
-
-===========================================
-
-====> 16-ReduxToDoList
-
-angular 4 redux
-
---> with pure Redux
-http://blog.ng-book.com/introduction-to-redux-with-typescript-and-angular-2/
-
-
---> @ngrx/store + @ngrx/core
-https://www.pluralsight.com/guides/front-end-javascript/ui-state-management-with-redux-in-angular-4
-https://github.com/Kaizeras/ngx-redux-ui-management-recipes
-
-::>
-https://blog.nrwl.io/using-ngrx-4-to-manage-state-in-angular-applications-64e7a1f84b7b
-
-init commit:
-https://github.com/vsavkin/state_management_ngrx4/commit/41db9537517f3e8beec4eda09a6c11720423420c
-
-https://github.com/vsavkin/state_management_ngrx4
-
-
-
-::>
-https://blog.realworldfullstack.io/real-world-angular-part-4-state-of-my-spa-10bf90c5a15
-
-
-
-==> To update library, 
-
-PS C:\Github\angular-05\16-ReduxToDoList> nvm install 7.9.0
-PS C:\Github\angular-05\16-ReduxToDoList> nvm use 7.9.0
-Now using node v7.9.0 (64-bit)
-
-
-npm install redux ng2-redux --save
-npm install @angular-redux/store --save
-
-
-Uninstalled angular cli npm uninstall @angular/cli -g
-Installed rxJS npm install rxjs
-Cleared cache npm cache clean
-Installed angular cli npm install @angular/cli -g
-
-
-
-===========================================
-
-Custom Injection Token: 
-
-see 15 Angular Material 2, 01:26:00
---> solving the problem of passing data into dialog box, using custom injection token behind MdDialog
-
-For dependency injection in contructor, if a type of number or string or any, Angular cannot know that
-at compilation time, so, need to specially configured in app.module.ts, providers.
-
-providers: [
-    CoursesService,
-    UsertokenService,
-	{ provide: CoursesService, useClass: CoursesService },
-	{ provide: DIALOG_DATA, useValue: {} }
-],
-
-
-
-Example:
-
-
-1. in EditCourseComponent, export const DIALOG_DATA = new InjectionToken('DIALOG_DATA');
-
-2. in app.module.ts, { provide: DIALOG_DATA, useValue: {} }
---> whenever find DIALOG_DATA when compiling, pass the empty object during dependency injection.
-
-
-3. in EditCourseComponent, constructor(@Inject(DIALOG_DATA) data: any) {
-... ...
-}
-
-==> real MdDialog, no need to define custom injection token, because Angular already defines
-MD_DIALOG_DATA
-
-in EditCourseComponent, 
-
-constructor(@Inject(MD_DIALOG_DATA) data: any) {
-	
-}
-
-in AppComponent
-
-constructor(private dialog: MdDialog) {
-}
-
-openDialog() {
-	this.dialog.open(EditCourseComponent, {
-		data: { courseId: 1 }
-	})
-	.afterClosed()
-	.subscribe(result => consule.log(result));
-}
-
-
-Cohesion:
-
-Things are related should be together, things are not related should not be together.
-
-
-see 15 Angular Material 2, 01:36:00
-
-ng g m md-components
-
-
-@NgModule({
-	exports: [
-		....
-	]
-})
-
-
-
-====>
-
-SASS: 01:39:00
-
-CSS Preprocessor: convert future CSS to standard CSS, like typescript to javascript, e.g, LESS, SASS, Stylus ...
-
-Anuglar supports SASS: Syntactically Awesome Style Sheet
-
-1. new theme.scss
-2. in .angular-cli.json,
-
-"styles": [
-	"stules.css",
-	"theme.scss"
-]
-
-3. 01:47:30, SASS syntax
-
-varables
-@import
-@mixin and @include ccc(param)
-
-
-4. need re-compile see taking in effect
-
-
-====> custom theme
-~01:53:00
-
-
-====> typography
-
-fonts.google.com
-
+then if you wants to create component folder in app then simply type
+ng g c pagination
+this will create ng g c pagination/pagination.component.ts
+
+--> if having component folder ...
+ng g c component/pagination
+this will create component/pagination/pagination.component.ts
 
 
 ===========================================
@@ -693,23 +311,499 @@ Add links
 
 ===========================================
 
+12-Deployment:
+
+ng build -prod
+
+==>
+Github Pages:
+https://pages.github.com/
+
+--> static contents, html, css, javascript ...
+
+npm i -g angular-cli-ghpages --> github pages
+
+ng build --prod --base-href="https://oopsmails.github.io/nameofrepo/" --> trailing slash!
+
+angular-cli-ghpages --> or short form: ngh
+
+ngh --no-silent --> for displaying real error message: e.g, permission denied
+
+Go to: https://oopsmails.github.io/nameofrepo/
+
+Shortcut: package.json, script, 
+
+"deploy:gh": "ng build --prod --base-href='.../' && ngh" --> or sudo ngh
+
+
+==> Firebase: backend, cloud, messaging, nosql database ...
+
+https://console.firebase.google.com/
+
+npm i -g firebase-tools
+
+firebase login
+
+firebase init
+
+:: select hosting 
+:: open firebase.json, define the folder to deploy
+
+{
+	"hosting": {
+		"public": "dist",
+		"rewrites": [
+			{
+				"source": "**",
+				"destination": "/index.html"
+			}
+		]
+	}
+}
+
+ng build --prod
+firebase deploy
+
+:: url: https://app-name.firebaseapp.com/
+
+Project Console: https://console.firebase.google.com/project/progressing-oopsmails/overview
+Hosting URL: https://progressing-oopsmails.firebaseapp.com
+
+==> Heroku: backend!!!! Node.js!!!
+
+heroku, register
+
+heroku cli, install
+
+heroku --version
+heroku login
+
+
+PS C:\Liu\Angular4\a4-mosh-course\progressing> heroku --version
+heroku-cli/6.14.36-15f8a25 (windows-x64) node-v8.7.0
+PS C:\Liu\Angular4\a4-mosh-course\progressing> heroku login
+Enter your Heroku credentials:
+Email: oopsmails@gmail.com
+Password: ************
+Logged in as oopsmails@gmail.com
+PS C:\Liu\Angular4\a4-mosh-course\progressing>
+
+
+heroku create
+heroku open
+
+package.json
+:: move angular-cli to dependencies from dev-dependencies
+
+:: Node.js, server.js
+
+npm i express --save
+
+package.json: node server.js
 
 
 ===========================================
 
+13
 
+===========================================
+
+14
 
 ===========================================
 
 
+15-Angular Material2
+
+====> Steps to introduce in
+
+1. npm i --save @angular/cdk @angular/material @angular/animations hammerjs
+
+2. styles.css
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body {padding-top: 80px}
+
+3. app.module.ts
+import { MdCheckboxModule } from '@angular/material';
+
+4. app.component.html
+<md-checkbox>Subscribe to</md-checkbox>
+
+
+====> Custom Injection Token: 
+
+see 15 Angular Material 2, 01:26:00
+--> solving the problem of passing data into dialog box, using custom injection token behind MdDialog
+
+For dependency injection in contructor, if a type of number or string or any, Angular cannot know that
+at compilation time, so, need to specially configured in app.module.ts, providers.
+
+providers: [
+    CoursesService,
+    UsertokenService,
+	{ provide: CoursesService, useClass: CoursesService },
+	{ provide: DIALOG_DATA, useValue: {} }
+],
+
+
+
+Example:
+
+
+1. in EditCourseComponent, export const DIALOG_DATA = new InjectionToken('DIALOG_DATA');
+
+2. in app.module.ts, { provide: DIALOG_DATA, useValue: {} }
+--> whenever find DIALOG_DATA when compiling, pass the empty object during dependency injection.
+
+
+3. in EditCourseComponent, constructor(@Inject(DIALOG_DATA) data: any) {
+... ...
+}
+
+====> real MdDialog, no need to define custom injection token, because Angular already defines
+MD_DIALOG_DATA
+
+in EditCourseComponent, 
+
+constructor(@Inject(MD_DIALOG_DATA) data: any) {
+	
+}
+
+in AppComponent
+
+constructor(private dialog: MdDialog) {
+}
+
+openDialog() {
+	this.dialog.open(EditCourseComponent, {
+		data: { courseId: 1 }
+	})
+	.afterClosed()
+	.subscribe(result => consule.log(result));
+}
+
+
+====> Cohesion:
+
+Things are related should be together, things are not related should not be together.
+
+
+see 15 Angular Material 2, 01:36:00
+
+ng g m md-components
+
+
+@NgModule({
+	exports: [
+		....
+	]
+})
+
+
+
+====> SASS: 01:39:00
+
+CSS Preprocessor: convert future CSS to standard CSS, like typescript to javascript, e.g, LESS, SASS, Stylus ...
+
+Anuglar supports SASS: Syntactically Awesome Style Sheet
+
+1. new theme.scss
+2. in .angular-cli.json,
+
+"styles": [
+	"stules.css",
+	"theme.scss"
+]
+
+3. 01:47:30, SASS syntax
+
+varables
+@import
+@mixin and @include ccc(param)
+
+
+4. need re-compile see taking in effect
+
+
+====> custom theme
+~01:53:00
+
+
+====> typography
+
+fonts.google.com
+
+
+====> More CSS, CSS3:
+
+====> CSS, 
+
+@media screen and (min-width: 480px) {
+    body {
+        background-color: lightgreen;
+    }
+}
+
+==> __ and --
+https://css-tricks.com/bem-101/
+
+/* Block component */
+.btn {}
+
+/* Element that depends upon the block */ 
+.btn__price {}
+
+/* Modifier that changes the style of the block */
+.btn--orange {} 
+.btn--big {}
+
+==> CSS Pseudo-elements
+https://www.w3schools.com/css/css_pseudo_elements.asp
+
+Notice the double colon notation - ::first-line versus :first-line
+
+The double colon replaced the single-colon notation for pseudo-elements in CSS3. This was an attempt from W3C to distinguish between pseudo-classes and pseudo-elements.
+
+The single-colon syntax was used for both pseudo-classes and pseudo-elements in CSS2 and CSS1.
+
+For backward compatibility, the single-colon syntax is acceptable for CSS2 and CSS1 pseudo-elements.
+
+--> 
+selector::pseudo-element {
+    property:value;
+}
+
+--> e.g, :before, :after, 
+p::first-line {
+    color: #ff0000;
+    font-variant: small-caps;
+}
+
+
+/* unvisited link */
+a:link {
+    color: #FF0000;
+}
+
+/* visited link */
+a:visited {
+    color: #00FF00;
+}
+
+The ::before pseudo-element can be used to insert some content before the content of an element.
+
+The following example inserts an image before the content of each <h1> element:
+
+Example
+h1::before {
+    content: url(smiley.gif);
+}
+
+::selection {
+    color: red;
+    background: yellow;
+}
+
+===========================================
+
+16-Redux
+
+====> angular 4 redux
+
+ngrx/store: github.com/ngrx/store --> re-implementing Redux pattern with Angular rx way
+ng2-redux: github.com/angular-redux/ng2-redux --> build on top of real Redux, most compatible with Redux
+
+--> with pure Redux
+http://blog.ng-book.com/introduction-to-redux-with-typescript-and-angular-2/
+
+
+--> @ngrx/store + @ngrx/core
+https://www.pluralsight.com/guides/front-end-javascript/ui-state-management-with-redux-in-angular-4
+https://github.com/Kaizeras/ngx-redux-ui-management-recipes
+
+::>
+https://blog.nrwl.io/using-ngrx-4-to-manage-state-in-angular-applications-64e7a1f84b7b
+
+init commit:
+https://github.com/vsavkin/state_management_ngrx4/commit/41db9537517f3e8beec4eda09a6c11720423420c
+
+https://github.com/vsavkin/state_management_ngrx4
+
+
+
+::>
+https://blog.realworldfullstack.io/real-world-angular-part-4-state-of-my-spa-10bf90c5a15
+
+
+
+==> To update library, 
+
+PS C:\Github\angular-05\16-ReduxToDoList> nvm install 7.9.0
+PS C:\Github\angular-05\16-ReduxToDoList> nvm use 7.9.0
+Now using node v7.9.0 (64-bit)
+
+
+npm install redux ng2-redux --save
+npm install @angular-redux/store --save
+
+
+Uninstalled angular cli npm uninstall @angular/cli -g
+Installed rxJS npm install rxjs
+Cleared cache npm cache clean
+Installed angular cli npm install @angular/cli -g
+
+
+==> 
+
+create app/store.ts
+app.module: add contructor
+
+npm install tassign --save
+
+npm install immutable --save : there is a trade of for using immutable or tassign!!!
+
+
+===========================================
+
+17
+
+===========================================
+
+18
+
+===========================================
+
+19
+
+===========================================
+
+20
+
+===========================================
+
+21
+
+===========================================
+
+22
+
+===========================================
+
+23
+
+===========================================
+
+24
+
+===========================================
+
+25
 
 ===========================================
 
 
+====> Extra section: create Modules
 
-===========================================
+1. C:\Albert\Angular4\a4-course>ng g module modules/first-module
+  create src/app/modules/first-module/first-module.module.ts (195 bytes)
+
+2. C:\Albert\Angular4\a4-course>ng g c modules/first-module
+  create src/app/modules/first-module/first-module.component.html (31 bytes)
+  create src/app/modules/first-module/first-module.component.spec.ts (664 bytes)
+  create src/app/modules/first-module/first-module.component.ts (292 bytes)
+  create src/app/modules/first-module/first-module.component.css (0 bytes)
+  update src/app/modules/first-module/first-module.module.ts (280 bytes)
+
+3. in FirstModuleModule
+
+exports: [
+	FirstModuleComponent // <-- this!
+]
+
+4. in client AppModule
+
+imports: [
+	BrowserModule,
+	FirstModuleModule // import it in imports, NOT declarations
+],
 
 
+5. in client, use it,
+
+<app-first-module>Testing first-module</app-first-module>
 
 
+6. npm install ng-packagr --save-dev
+
+==> !!!!!!!!!!! continue to follow at home, https://medium.com/@ngl817/building-an-angular-4-component-library-with-the-angular-cli-and-ng-packagr-53b2ade0701e
+
+
+--> As per the ng-packagr docs, we¡¯ll need to add two files to our project, ng-package.json and public_api.ts
+
+7.
+
+Add the following to ng-package.json:
+{
+  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+  "lib": {
+    "entryFile": "public_api.ts"
+  }
+}
+
+8. export your first-module.module.ts from public_api.ts:
+
+export * from './src/app/modules/first-module/first-module.module.ts'
+
+9. package.json
+
+::> add script
+"packagr": "ng-packagr -p ng-package.json"
+
+::>
+"private": false,
+
+10. create package,
+
+npm run packagr
+
+....
+Built Angular library from C:\Liu\Angular4\a4-mosh-course\progressing, written to C:\Liu\Angular4\a4-mosh-course\pro
+gressing\dist
+
+
+11.a. Pack it for local development
+
+
+PS C:\Liu\Angular4\a4-mosh-course\progressing\dist> npm pack
+progressing-0.0.0.tgz
+PS C:\Liu\Angular4\a4-mosh-course\progressing\dist>
+
+The 0.0.0 part comes from the top of your package.json. You¡¯ll want to keep bumping that up as you start to truly deploy your component library for consumption.
+From other Angular applications on your system that require your component library, you can npm install ../some-relative-path/dist/my-component-library-0.0.0.tgz to install your component library into your application.
+
+
+11.b. Publish it on npm
+
+Once you login to your npm account with npm login you can publish your component library with npm publish dist. Just be sure that you have a unique package name (hint: my-component-library may be taken). Once published, you¡¯ll be able to install your component library from npm with npm install my-component-library.
+
+
+12. Consuming your component library
+
+
+Once installed, you can import your header component into any application¡¯s app.module.ts, by including it in its @NgModule imports array¡­
+import { HeaderModule } from 'my-package-name';
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    HeaderModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+And using its selector in a template as you would a component that is part of your application.
 
