@@ -1,3 +1,4 @@
+import { StepComponent } from './component/steps/step.component';
 import { Pagination2Component } from './component/pagination/pagination2.component';
 import { UsertokenService } from './service/usertoken/usertoken.service';
 import { CoursesService } from './service/courses/courses.service';
@@ -15,6 +16,7 @@ import { InputFormatDirective } from './directive/input-format.directive';
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 import { NewcourseFormComponent } from './component/newcourse-form/newcourse-form.component';
+import { StepsComponent } from './component/steps/steps.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { NewcourseFormComponent } from './component/newcourse-form/newcourse-for
     ContactFormComponent,
     SignupFormComponent,
     NewcourseFormComponent,
-    Pagination2Component
+    Pagination2Component,
+    StepsComponent,
+    StepComponent
   ],
   imports: [
     BrowserModule,

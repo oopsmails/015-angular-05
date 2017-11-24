@@ -6,16 +6,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
-  @Input("pageNumber") currentPage: number;
+  @Input('pageNumber') currentPage: number;
   @Input() clickedPageNumber: number;
-  @Input("itemCount") itemCount: number;
-  @Input("itemsPerPage") itemsPerPage: number;
-  @Input("numberOfPageCombine") numberOfPageCombine: number;
+  @Input('itemCount') itemCount: number;
+  @Input('itemsPerPage') itemsPerPage: number;
+  @Input('numberOfPageCombine') numberOfPageCombine?: number;
   @Input() backgroundType: string;
   @Input() hiddenArrows: boolean;
   @Input() disableNavigation: boolean;
 
-  @Output("pageClick") pageClickEitter: EventEmitter<PageClickEventArgs> = new EventEmitter();
+  @Output('pageClick') pageClickEitter: EventEmitter<PageClickEventArgs> = new EventEmitter();
 
   numOfPages: number = 0;
 
@@ -36,7 +36,7 @@ export class PaginationComponent implements OnInit {
   }
 
   setListItemClass(index: number): string[] {
-    var CSS_CLASSES = {
+    const CSS_CLASSES = {
       SELECTED: 'progress-pagination__number__item--selected',
       SINGLE: 'progress-pagination__number__item--selected--single',
       FIRST: 'progress-pagination__number__item--selected--first',
@@ -56,7 +56,7 @@ export class PaginationComponent implements OnInit {
   }
 
   pageClick(pageClickEventArgs: PageClickEventArgs): void {
-    console.log("pageClick, pageClickEventArgs: ", pageClickEventArgs);
+    console.log('pageClick, pageClickEventArgs: ', pageClickEventArgs);
     // this.currentPage = pageClickEventArgs.pageNumber;
 
     if (!this.disableNavigation) {
@@ -69,15 +69,15 @@ export class PaginationComponent implements OnInit {
           indexArray = Array.from({ length: (this.numberOfPageCombine) }, (v, k) => k + pageClickEventArgs.pageNumber);
         }
       } else {
-        //call service based on pageNumberClicked to get data
+        // call service based on pageNumberClicked to get data
         // console.log('pageClick, pageNumberClicked: ', pageClickEventArgs.pageNumber);
         indexArray.push(pageClickEventArgs.pageNumber);
       }
     }
 
-    this.pageClickEitter.emit({ 
+    this.pageClickEitter.emit({
       pageNumber: this.currentPage
-    }); 
+    });
   }
 
   setCurrentPage(index): void {
@@ -89,21 +89,16 @@ export class PaginationComponent implements OnInit {
       } else {
         this.currentPage = this.getLastPageNumber();
       }
-      // if (self.ngModelController !== null && angular.isDefined(self.ngModelController)) {
-      //   self.ngModelController.$setViewValue(self.currentPage);
-      // }
-      // if (angular.isFunction(self.onPageClick)) {
-      //   self.onPageClick();
-      // }
     }
   }
 
   getLastPageNumber(): number {
-    // console.log("getLastPageNumber, lastPageNum: ", this.numOfPages - this.numberOfPageCombine + 1);
+    // console.log('getLastPageNumber, lastPageNum: ', this.numOfPages - this.numberOfPageCombine + 1);
     return this.numOfPages - this.numberOfPageCombine;
   }
 
-  range = (start, end) => Array.from({ length: (end - start) }, (v, k) => k + start);
+  range = (start: number, end: number): Array<number> =>
+    Array.from({ length: (end - start) }, (v: number, k: number) => k + start)
 }
 
 

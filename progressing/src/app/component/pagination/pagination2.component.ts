@@ -17,10 +17,10 @@ export class Pagination2Component implements OnInit {
 
   @Output("pageClick2") pageClickEmitter: EventEmitter<number[]> = new EventEmitter();
 
-  numOfPages: number = 0;
-  prevLabel: string = 'PREVIOUS';
-  nextLabel: string = 'NEXT';
-  ariaHeaderLabel: string = 'ARIA_HEADER';
+  numOfPages = 0;
+  prevLabel = 'PREVIOUS';
+  nextLabel = 'NEXT';
+  ariaHeaderLabel = 'ARIA_HEADER';
 
   constructor() {
   }
@@ -95,5 +95,6 @@ export class Pagination2Component implements OnInit {
     return this.numOfPages - this.numberOfPageCombine;
   }
 
-  range = (start, end) => Array.from({ length: (end - start) }, (v, k) => k + start);
+  range = (start: number, end: number): Array<number> =>
+      Array.from({ length: (end - start) }, (v: number, k: number) => k + start)
 }
