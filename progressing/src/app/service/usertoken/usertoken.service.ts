@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/rx';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { UserTokens } from '../../model/userTokens';
@@ -6,9 +6,9 @@ import { UserTokens } from '../../model/userTokens';
 @Injectable()
 export class UsertokenService {
   private userTokensUrl = 'http://localhost:8080/spring-security-oauth-server/tokens/fooClientIdPassword';
-  
+
     constructor(private http: Http) { }
-  
+
     getUserToken(): Observable<UserTokens> {
       return this.http.get(this.userTokensUrl)
       .map((res: Response) => res.json())
@@ -26,6 +26,5 @@ export class UsertokenService {
       //   }
       // );
     }
-  
+
   }
-  

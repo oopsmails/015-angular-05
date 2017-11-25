@@ -643,8 +643,10 @@ PS C:\Github\angular-05\16-ReduxToDoList> nvm install 7.9.0
 PS C:\Github\angular-05\16-ReduxToDoList> nvm use 7.9.0
 Now using node v7.9.0 (64-bit)
 
+==> install ng2-redux
 
 npm install redux ng2-redux --save
+
 npm install @angular-redux/store --save
 
 
@@ -662,6 +664,73 @@ app.module: add contructor
 npm install tassign --save
 
 npm install immutable --save : there is a trade of for using immutable or tassign!!!
+
+==> Reducer: A function that specifies how the state changes in response to an action.
+A reducer does NOT modify the state. It returns the new state.
+
+==> 31:45
+resovle Observable destory problem with @select(which is returning an Observable!) and asyc pipe {{ counter | asyc }}
+
+--> @select usage:
+@select('counter') count;
+@select(['messaging', 'newMessages']) newMessages; // path
+@select((s: IAppState) => s.messaging.newMessages) newMessages; // arrow function
+
+--> returning new state
+
+1. javascript: not type safe
+Object.assign({}, state, { counter: state.counter + 1 });
+-> Object.assign({}, state, { counter: state.counter + 1, isOnline: true }); // no compilation error
+
+2. tassign: type safe, preferred with unit tests!
+npm install tassign --save
+tassign(state, { counter: state.counter + 1 })
+-> but this will NOT stop mutating state before or after ...
+
+state.counter++; // wrong and cannot be caught when compiling
+return  tassign(state, { counter: state.counter + 1 })
+-> unit tests, one is to ensure the right returning value, the other is to make the SOURCE state is NOT modified.
+
+3. use immutable object: 41:40 ... NOT preferred!!! 
+More, may not with good support with 
+@select('counter') count; // state.get('counter') <-- may not be supported
+Have to use,
+@select(s => s.get('counter')) newMessages; // arrow function
+
+npm install immutable --save
+
+import { fromJS, Map } from 'immutable'
+export class AppModule {
+  constructor(ngRedux: NgRedux<Map<string, any>>) { <-- lost type checking here!
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  }
+}
+fromJS(INITIAL_STATE)
+
+and in store.ts
+export function rootReducer(state: Map<string, any>, action): Map<string, any>
+
+return state.set('counter', state.get('counter') + 1); <-- get and set to change immutalbes
+
+==> enable Redux dev tools
+-- install chrome Redux dev tools
+-- app.module.ts:
+import { NgModule, isDevMode } from '@angular/core';
+
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
+    const enhancers = isDevMode() ? [devTools.enhancer()] : [];
+    ngRedux.configureStore(rootReducer, INITIAL_STATE, [], enhancers);
+  }
+}
+-- open chrome Redux dev tooling
+
+==> calling service to talk to backend server.
+57:05 ...
+see todo-list2.component.ts
+
+
+
 
 
 ===========================================
@@ -702,8 +771,15 @@ npm install immutable --save : there is a trade of for using immutable or tassig
 
 ===========================================
 
+====> Promise and Observable:
 
-====> Extra section: create Modules
+Observable: need to destroy! Otherwise, memory leak.
+asyc pipe takes care ...
+
+
+===========================================
+
+====> Extra section: create your own Modules
 
 1. C:\Albert\Angular4\a4-course>ng g module modules/first-module
   create src/app/modules/first-module/first-module.module.ts (195 bytes)
