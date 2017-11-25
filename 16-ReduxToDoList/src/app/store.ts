@@ -11,18 +11,20 @@ export const INITIAL_STATE: IAppState = {
   lastUpdate: null
 }
 
-export function rootReducer(state: IAppState, action): IAppState {
+function addTodo(state: IAppState, action: any) {
+  const newTodo = { id: state.todos.length + 1, title: action.title };
+
+  return tassign(state, {
+    // Instead of the push() method, we use the concat() method because the former mutates
+    // the original array, whereas the latter returns a new array.
+    todos: state.todos.concat(newTodo),
+    lastUpdate: new Date()
+  });
+}
+
+export function rootReducer(state: IAppState, action: any): IAppState {
   switch (action.type) {
-    case ADD_TODO:
-      const newTodo = { id: state.todos.length + 1, title: action.title };
-
-      return tassign(state, {
-        // Instead of the push() method, we use the concat() method because the former mutates
-        // the original array, whereas the latter returns a new array.
-        todos: state.todos.concat(newTodo),
-        lastUpdate: new Date()
-      });
-
+    case ADD_TODO: return addTodo(state, action);
     case TOGGLE_TODO:
       // When modifying an item in an array, we should create a new array, and copy
       // all other item from the source array (except the item to be modified). At the same time
@@ -82,6 +84,7 @@ export function rootReducer(state: IAppState, action): IAppState {
     });
 
     case ADD_TODO_CORRELATE:
+      const newTodo = { id: state.todos.length + 1, title: action.title };
       return tassign(state, {
         todos: state.todos.concat(newTodo),
         lastUpdate: new Date()

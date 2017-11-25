@@ -729,7 +729,11 @@ export class AppModule {
 57:05 ...
 see todo-list2.component.ts
 
+==> 16f-ReduxComplexDomains is NOT working ... till: 20171124
 
+because there is a bug in combineReducers.
+
+see https://github.com/Microsoft/TypeScript/issues/16795
 
 
 
