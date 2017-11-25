@@ -9,13 +9,13 @@ export class InputFormatDirective {
   constructor(private el: ElementRef) { }
 
   @HostListener('focus') onFocus() {
-    console.log("on Focus");
+    console.log('on Focus');
   }
 
   @HostListener('blur') onBlur(): void {
-    console.log("on Blur");
-    let value: string = this.el.nativeElement.value;
-    this.el.nativeElement.value = this.format === 'uppercase' ? 
+    console.log('on Blur');
+    const value: string = this.el.nativeElement.value;
+    this.el.nativeElement.value = this.format === 'uppercase' ?
                                     value.toUpperCase() : value.toLowerCase();
   }
 }

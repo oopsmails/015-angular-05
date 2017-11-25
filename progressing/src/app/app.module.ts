@@ -17,6 +17,9 @@ import { ContactFormComponent } from './component/contact-form/contact-form.comp
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 import { NewcourseFormComponent } from './component/newcourse-form/newcourse-form.component';
 import { StepsComponent } from './component/steps/steps.component';
+import { CardhoverDirective } from './directive/cardhover.directive';
+import { CardHostingComponent } from './component/card-hosting/card-hosting.component';
+import { CardComponent } from './component/card-hosting/card.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { StepsComponent } from './component/steps/steps.component';
     NewcourseFormComponent,
     Pagination2Component,
     StepsComponent,
-    StepComponent
+    StepComponent,
+    CardhoverDirective,
+    CardHostingComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

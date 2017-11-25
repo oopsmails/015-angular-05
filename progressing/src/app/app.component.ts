@@ -1,3 +1,4 @@
+import { Card } from './component/card-hosting/card-hosting.component';
 import { Step } from './component/steps/step.component';
 import { PageClickEventArgs } from './component/pagination/pagination.component';
 import { Component, OnInit } from '@angular/core';
@@ -25,6 +26,8 @@ export class AppComponent implements OnInit {
 
   steps: Array<Step> = new Array();
 
+  cards: Array<Card> = new Array();
+
   ngOnInit(): void {
     this.pageNumber = 0;
     this.itemCount = 55;
@@ -47,6 +50,12 @@ export class AppComponent implements OnInit {
       };
       this.steps.push(step);
     });
+
+    this.cards = [
+      new Card('What did the cheese say when it looked in the mirror?', 'Hello-me (Halloumi)'),
+      new Card('What kind of cheese do you use to disguise a small horse?', 'Mask-a-pony (Mascarpone)'),
+      new Card('A kid threw a lump of cheddar at me', 'I thought ‘That’s not very mature’'),
+    ];
   }
 
   onFavoriteChanged(eventArgs: FavoriteChangedEventArgs) {
