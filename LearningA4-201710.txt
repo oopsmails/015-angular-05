@@ -750,7 +750,19 @@ see https://github.com/Microsoft/TypeScript/issues/16795
 
 ===========================================
 
-18
+18-IntegrationTesting
+
+==> ng g c xxx: will generate spec testing files
+
+==. beforeEach(async(() => {
+
+async is for accessing file system ... 07:00
+.compileComponents() ...
+--> not necessay with webpack
+
+
+
+
 
 ===========================================
 
