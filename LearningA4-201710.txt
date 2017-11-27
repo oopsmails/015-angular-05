@@ -739,7 +739,14 @@ see https://github.com/Microsoft/TypeScript/issues/16795
 
 ===========================================
 
-17
+17-UnitTesting
+
+==> Angular uses Karma test runner (*.spec.ts) and Jasmine testing framework
+
+==> Arrange, Act, Assert
+
+==> ng test --code--coverage
+
 
 ===========================================
 
