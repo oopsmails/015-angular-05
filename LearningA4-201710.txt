@@ -906,3 +906,158 @@ import { HeaderModule } from 'my-package-name';
 export class AppModule { }
 And using its selector in a template as you would a component that is part of your application.
 
+
+===========================================
+
+
+angular5+ngrx-store4: @Effect
+
+====> ngrx @Effects() explained
+https://stackoverflow.com/questions/39552067/what-is-the-purpose-of-ngrx-effects-library
+
+====> Angular 5 and ngrx/store v4 example
+https://blog.angular.io/announcing-ngrx-4-87df0eaa2806
+
+====> Using NgRx 4 to Manage State in Angular Applications
+https://blog.nrwl.io/using-ngrx-4-to-manage-state-in-angular-applications-64e7a1f84b7b
+https://github.com/vsavkin/state_management_ngrx4
+
+====> NgRx 4: Advanced Patterns and Techniques
+https://blog.nrwl.io/ngrx-patterns-and-techniques-f46126e2b1e5
+
+
+
+----> Effects classes have three roles:
+
+---- They decide on how to process actions.
+---- They transform actions into other actions.
+---- They perform side effects.
+
+---- Action Deciders: They decide on how to process actions.
+
+-- Filtering Decider, ofType, e.g:
+@Effect() addTodo = this.actions.ofType('ADD_TODO').
+    concatMap(todo => this.http.post(…).
+    map(() => ({type: 'TODO_ADDED', payload: todo})));
+
+
+-- Content-Based Decider, based on payload content, e.g:
+@Effect() addTodo = this.actions.typeOf('ADD_TODO').map(add => {
+if (add.payload.addLast) {
+  return ({type: 'APPEND_TODO', payload: add.payload});
+} else {
+  return ({type: 'INSERT_TODO', payload: add.payload});
+}
+});
+
+-- Context-Based Decider, e.g;
+@Effect() addTodo = this.actions.typeOf('ADD_TODO').map(addTodo => {
+if (this.env.confirmationIsOn) {
+  return ({type: 'ADD_TODO_WITH_CONFIRMATION', payload: addTodo.payload});
+} else {
+  return ({type: 'ADD_TODO_WITHOUT_CONFIRMATION', payload: addTodo.payload});
+}
+});
+
+-- Splitter, e.g:
+@Effect() addTodo = this.actions.typeOf('REQUEST_ADD_TODO').flatMap(add => [
+	{type: 'ADD_TODO', payload: add.payload},
+	{type: 'LOG_OPERATION', payload: {loggedAction: 'ADD_TODO', payload: add.payload}}
+]);
+
+-- Aggregator, e.g:
+@Effect() aggregator = this.actions.typeOf(‘ADD_TODO’).flatMap(a =>
+zip(
+  // note how we use a correlation id to select the right action
+  this.actions.filter(t => t.type == 'TODO_ADDED' && t.payload.id === a.payload.id).first(),
+  this.actions.filter(t => t.type == ‘LOGGED' && t.payload.id === a.payload.id).first()
+)
+).map(pair => ({
+type: 'ADD_TODO_COMPLETED',
+payload: {id: pair[0].payload.id, log: pair[1].payload}
+}));
+
+Aggregator are not as common as say splitters, so RxJs does not come with an operator implementing it. That's why we had to add some boilerplate to do it ourselves. But could always introduce a custom RxJS operator to help with that.
+
+
+---- Action Transformers: They transform actions into other actions.
+
+-- Content Enricher, e.g:
+@Effect() addTodo = this.actions.ofType('ADD_TODO').
+map(add => ({
+   action: 'ADD_TODO_BY_USER',
+   payload: {...add.payload, user: this.currentUser}
+}));
+
+This example is very basic: we merely add the already available current user to the payload. In a more interesting example we would fetch data from the backend and add it to the payload.
+
+-- Normalizer & Canonical Actions, e.g:
+@Effect() insertTodo = this.actions.ofType('INSERT_TODO').
+map(insert => ({
+  action: 'ADD_TODO',
+  payload: {...insert.payload, append: false}
+}));
+
+@Effect() appendTodo = this.actions.ofType('APPEND_TODO').
+map(insert => ({
+  action: 'ADD_TODO',
+  payload: {...insert.payload, append: true}
+}));
+
+
+
+
+---- Building Blocks:
+
+
+class TodosEffects {
+  constructor(private actions: Actions, private currentUser: User, private http: Http) {}
+
+  @Effect() addTodo =
+     this.actions.ofType('ADD_TODO'). // filtering decider
+     map(t => ({type: t.type, payload: {...payload, user: this.currentUser}})). // content enricher
+     map(t => t.append ? // content-based decider
+        ({type: 'APPEND_TODO', payload: t.payload}) :
+        ({type: 'INSERT_TODO', payload: t.payload})).
+     flatMap(t => [t, {type: 'LOG_OPERATION', payload: t}]); // splitter
+  @Effect() appendTodo =
+    this.actions.ofType('APPEND_TODO').
+    mergeMap(t => this.http.post(...));
+
+  @Effect() insertTodo =
+    this.actions.ofType('INSERT_TODO').
+    mergeMap(t => this.http.post(...));
+}
+
+
+
+===========================================
+
+
+
+===========================================
+
+
+
+===========================================
+
+
+
+===========================================
+
+
+
+===========================================
+
+
+
+===========================================
+
+
+
+
+
+
+
+
+
