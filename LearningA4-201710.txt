@@ -760,7 +760,73 @@ async is for accessing file system ... 07:00
 .compileComponents() ...
 --> not necessay with webpack
 
+====> todos.component.spec.ts
+::> example for dependency injection
 
+====> user-details.component.spec.ts
+::> example for router
+
+before instantiate Observable, 
+params: Observable<any> = Observable.empty();
+
+::> error
+Chrome 62.0.3202 (Windows 7 0.0.0) ERROR
+Uncaught NetworkError: Failed to execute 'send' on 'XMLHttpRequest': Failed to load 'ng:///DynamicTestModule/UserDetailsComponent_Host.ngfactory.js'.
+at http://localhost:9876/_karma_webpack_/polyfills.bundle.js:2281
+
+
+::> to push a value into an Observable!!! 45:35
+
+const route: ActivatedRouteStub = TestBed.get(ActivatedRoute);
+
+====> app.routes.spec.ts
+::> router configuration
+
+{ path: 'users', component: UsersComponent },
+
+
+====> router-outlet
+::> router-outlet
+
+'router-outlet' is not a known element:
+
+
+====> nav folder
+
+::> NO_ERRORS_SCHEMA, 58:40
+this tells Angular to ignore any elements or attributes it doesn't recognize.
+if having a very complex template which has a lot of components or directives, you may find this is easier ...
+but cannot catch "<app-nav2>" ...
+
+====> highlight.directive.spec.ts
+to test attribute directive, should create hosting components in test class and test various scenarios.
+add DirectiveHostComponent in test class.
+
+::> Note this, this.el.nativeElement.style.backgroundColor = this.bgColor || this.defaultColor;
+
+
+====> todos.component.spec.ts and todos.component.ts
+component with async operations
+
+==> what if ngOnInit() of todos.component.ts returning Promise
+
+this.service.getTodosPromise().then(t => this.todos = t);
+-->
+spyOn(service, 'getTodosPromise').and.returnValue(Promise.resolve([ [1, 2, 3] ]));
+--> 
+"expect WAS CALLED" before "THEN WAS CALLED"
+--> because async call ... is delayed, javascript engine puts the call back function in the queue and excutes it after
+--> why this is NOT happening with Observable? because the call back function of '.subcribe()' is executed immediately!
+--> this is a difference between Promise and Observable
+--> to fix the test, 
+
+-> we need to wrap the test function in the async function of Angular and fixtrue.whenStable();
+-> or use fakeAsync
+
+--> Also note, Observable is using array of array, Promise is using just array???
+
+spyOn(service, 'getTodos').and.returnValue(Observable.from([ [1, 2, 3] ]));
+spyOn(service, 'getTodosPromise').and.returnValue(Promise.resolve([ 1, 2, 3] ));
 
 
 
@@ -1033,9 +1099,32 @@ class TodosEffects {
 
 ===========================================
 
+Typescript: 
+
+====> Dictionary, ES6 Map
+
+https://stackoverflow.com/questions/13631557/typescript-objects-as-dictionary-types-as-in-c-sharp
+
+var map: { [email: string]: Customer; } = { };
+map['foo@gmail.com'] = new Customer(); // OK
+map[14] = new Customer(); // Not OK, 14 is not a string
+map['bar@hotmail.com'] = 'x'; // Not OK, 'x' is not a customer
+
+interface StringToCustomerMap {
+    [email: string]: Customer;
+}
+
+var map: StringToCustomerMap = { };
+// Equivalent to first line of above
+
+
 
 
 ===========================================
+
+VS Code:
+
+====> vs code clear terminal: ctrl + k
 
 
 
