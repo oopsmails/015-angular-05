@@ -1,5 +1,5 @@
-import {Component, Input, EventEmitter, Output} from '@angular/core';
-import {Talk} from "../model";
+import { Talk } from '../model';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'watch-button',
