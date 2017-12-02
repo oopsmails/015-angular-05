@@ -287,6 +287,109 @@ NewCourseFormComponent
 
 09-Consuming HTTP Services
 
+54:00,     return this.http.get(this.url)
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/observable/throw';
+
+==> ErrorHandler
+providers: [
+	... ...
+	{ provide: ErrorHandler, useClass: AppErrorHandler }
+]
+
+
+==> 
+122. The Map Operator
+4:27
+in data.service.ts
+getAll() {
+	return this.http.get(this.url)
+	  .map(response => response.json())
+	  .catch(this.handleError);
+}
+
+in posts.component.ts
+ngOnInit() {
+	this.service.getAll()
+	  .subscribe(posts => this.posts = posts);
+}
+
+
+==>
+123. Optimistic vs Pessimistic Updates
+6:25
+
+--> Optimistic: roll back could be so fast and user wouldn't see it, so, normall use Optimistic!
+createPost(input: HTMLInputElement) {
+	let post = { title: input.value };
+	this.posts.splice(0, 0, post);
+
+	input.value = '';
+
+	this.service.create(post)
+	  .subscribe(
+		newPost => {
+		  post['id'] = newPost.id;
+		},
+		(error: AppError) => {
+		  this.posts.splice(0, 1); // roll back here!!!
+
+		  if (error instanceof BadInput) {
+			// this.form.setErrors(error.originalError);
+		  }
+		  else throw error;
+		});
+}
+
+--> Pessimistic
+createPost(input: HTMLInputElement) {
+	let post = { title: input.value };
+	input.value = '';
+
+	this.service.create(post)
+	  .subscribe(
+		newPost => {
+		  post['id'] = newPost.id;
+		  this.posts.splice(0, 0, post);
+		},
+		(error: AppError) => {
+		  if (error instanceof BadInput) {
+			// this.form.setErrors(error.originalError);
+		  }
+		  else throw error;
+		});
+}
+
+
+--> simulate error
+
+in data.service.ts
+create(resource) {
+	return Observable.throw(new AppError()); <---- Here
+	return this.http.post(this.url, JSON.stringify(resource))
+	  .map(response => response.json())
+	  .catch(this.handleError);
+}
+
+--> deletePost: follow!!!
+
+==>
+124. Observables(mostly used by Angular) vs Promises
+6:44
+
+Observables
+-- lazy, nothing happens until .subscribe()
+
+Promises
+-- eager, as soon as create a promise, it happens
+-- then(and catch) method is called after happening
+
+--> because Observables have many other powerful operators, called reactive programming, e.g, retry(3),
+they are only called after .subscribe()
+
 
 
 ===========================================
@@ -307,6 +410,93 @@ Add links
 ===========================================
 
 11-Authentication and Authorization
+
+==> package.json
+
+"angular2-jwt": "^0.2.3",
+
+npm install angular2-jwt --save
+
+==> fake-backend.ts
+abc@abc.com
+123
+
+jwt.io !!!! --> security for the signature is ONLY on server, NOT on client!
+
+==> order.service.ts
+import 'rxjs/add/operator/map';
+
+
+app.module.ts
+
+==> login
+
+login.component.ts
+
+auth.service.ts
+
+
+==> logout
+
+home.component.html
+auth.service.ts
+
+
+==> isExpired,
+when generating a token, it should be with an expiration date.
+
+
+==> admin: can have a roles array in token ...
+
+==> canActivate: 40:00
+
+...\11-auth-demo-starter\auth-demo-starter\src\app>ng g s services/auth-guard
+
+app.module.ts
+
+==> redirecting! 45:30
+
+pass query parameter, returnUrl
+
+48:52, using this.route.snapshot ...!!!
+
+don't have to subscribe to query parameter map Observable??
+
+==> admin link only to admin user ... 50:20
+
+...\11-auth-demo-starter\auth-demo-starter\src\app>ng g s services/admin-auth-guard
+
+admin-auth-guard.service.ts
+
+==> Accessing Protected API Resource, 56:03
+
+order.service.ts, need to include Authorization header in request
+
+01:01:10, introducing angular2-jwt AuthHttp
+
+--> http: AuthHttp, all methods, internally, implemented token checking ..., Bearer token
+--> Note: the configuration in app.module.ts for AuthHttp!
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!>
+
+Error:
+EmptyError: no elements in sequence
+
+Solution: add pathMatch: 'full'
+{ path: '', component: HomeComponent, pathMatch: 'full' },
+
+https://stackoverflow.com/questions/39734085/angular-2-0-1-router-emptyerror-no-elements-in-sequence
+
+Add pathMatch: 'full'
+
+{ path: '', component: HomeComponent, pathMatch: 'full' },
+otherwise both routes
+
+{ path: '', component: HomeComponent },
+{ path: 'schedule', component: ScheduleComponent },
+match on route /schedule because '' matches, but doesn't consume anything from the route and then also 'schedule' matches.
 
 
 ===========================================
@@ -1125,6 +1315,10 @@ var map: StringToCustomerMap = { };
 VS Code:
 
 ====> vs code clear terminal: ctrl + k
+
+====> Search "files to exclude"
+*.js, *.js.map, *.json, *.lock, *.md
+
 
 
 
