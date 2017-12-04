@@ -1319,6 +1319,14 @@ VS Code:
 ====> Search "files to exclude"
 *.js, *.js.map, *.json, *.lock, *.md
 
+====> Error: Extension host terminated unexpectedly. Please reload the window to recover.
+Reason: when copy from other resource directly into workspace with git supported, if copied over
+.git of outside, then this error shows up.
+Solution: delete the .git file NOT belong to current git.
+
+
+
+
 
 
 

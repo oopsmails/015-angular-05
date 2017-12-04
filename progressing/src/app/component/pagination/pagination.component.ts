@@ -59,6 +59,8 @@ export class PaginationComponent implements OnInit {
     console.log('pageClick, pageClickEventArgs: ', pageClickEventArgs);
     // this.currentPage = pageClickEventArgs.pageNumber;
 
+    this.calcNumOfPages();
+
     if (!this.disableNavigation) {
       this.setCurrentPage(pageClickEventArgs.pageNumber);
       let indexArray: number[] = [];
