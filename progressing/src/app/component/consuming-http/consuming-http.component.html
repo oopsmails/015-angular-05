@@ -14,7 +14,7 @@
     {{ post.title }}
   </li>
 </ul>
-<!-- <div *ngIf="itemCount > 0"> -->
+<div *ngIf="itemCount > 0">
   <app-pagination2
       [pageNumber]="pageNumber"
       [itemCount]="itemCount"
@@ -26,4 +26,4 @@
       (pageClick2)="onPageChange($event)"
   >
   </app-pagination2>
-<!-- </div> -->
+</div>

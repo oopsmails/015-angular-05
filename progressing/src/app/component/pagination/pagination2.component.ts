@@ -33,7 +33,7 @@ export class Pagination2Component implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('Pagination2Component, ngOnChanges1: itemcount', this.itemCount);
-    if (changes['pageNumber']) {
+    if (changes['currentPage']) {
       console.log('Pagination2Component, ngOnChange2: itemcount', this.itemCount);
       this.numOfPages = this.calcNumOfPages();
       this.setCurrentPage(this.currentPage);

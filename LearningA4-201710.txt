@@ -1333,14 +1333,14 @@ https://scotch.io/tutorials/3-ways-to-pass-async-data-to-angular-2-child-compone
 the pagination component is initialized before its parent's ngOnInit(), then, the pagination
 html is not properly working. 
 
-Solution 1: in consuming-http.component.html, add
+--> Solution 1: in consuming-http.component.html, add
 
 <div *ngIf="itemCount > 0">
 	<app-pagination2 ...
 </div>
 
 
-Solution 2: ngOnChanges is a lifecycle hook that run whenever it detects changes to 
+--> Solution 2: ngOnChanges is a lifecycle hook that run whenever it detects changes to 
 input properties. That means it's guaranteed that everytime data input value changed, 
 our grouping logic will be triggered if we put our code here.
 
@@ -1352,7 +1352,11 @@ if (changes['pageNumber']) {
 }
 }
 
-Solution 3: NOT tried
+::> In our pagination case, Solution 2 will NOT work independently ..., need to work with Solution 1. 
+If not going to do things, e.g, sorting in pagination component, then MAY NOT need Solution 2, just
+use Solution 1.
+
+--> Solution 3: NOT tried
 
 
 
