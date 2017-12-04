@@ -25,16 +25,20 @@ export class ConsumingHttpComponent implements OnInit {
   // pageNumber: number;
   // itemCount: number;
   // itemsPerPage: number;
-  numberOfPageCombine: number;
-  backgroundType: string;
-  hiddenArrows: boolean;
-  disableNavigation: boolean;
+  // numberOfPageCombine: number;
+  // backgroundType: string;
+  // hiddenArrows: boolean;
+  // disableNavigation: boolean;
 
   loading = false;
   itemCount = 0;
-  pageNumber = 1;
+  pageNumber = 0;
   itemsPerPage = 5;
-    
+
+  numberOfPageCombine = 1;
+  backgroundType = 'light';
+  hiddenArrows = false;
+  disableNavigation = false;
 
   constructor(private service: PostsService) {
   }
@@ -133,6 +137,7 @@ export class ConsumingHttpComponent implements OnInit {
     indexRet.forEach((item: number) => {
       console.log('pageClick, index array: ', item);
     });
+    this.pageNumber = indexRet[0];
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-pagination2',
@@ -6,9 +6,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./pagination.component.css']
 })
 export class Pagination2Component implements OnInit {
-  @Input("pageNumber") currentPage: number;
+  @Input('pageNumber') currentPage: number;
   @Input() clickedPageNumber: number;
-  @Input("itemCount") itemCount: number;
+  @Input() itemCount: number;
   @Input("itemsPerPage") itemsPerPage: number;
   @Input("numberOfPageCombine") numberOfPageCombine: number;
   @Input() backgroundType: string;
@@ -29,6 +29,15 @@ export class Pagination2Component implements OnInit {
     console.log('Pagination2Component, ngOnInit: itemcount', this.itemCount);
     this.numOfPages = this.calcNumOfPages();
     this.setCurrentPage(this.currentPage);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Pagination2Component, ngOnChanges1: itemcount', this.itemCount);
+    if (changes['pageNumber']) {
+      console.log('Pagination2Component, ngOnChange2: itemcount', this.itemCount);
+      this.numOfPages = this.calcNumOfPages();
+      this.setCurrentPage(this.currentPage);
+    }
   }
 
   calcNumOfPages(): number {

@@ -6,21 +6,24 @@
     *ngFor="let post of posts"
     class="list-group-item">
     <button 
+      (click)="updatePost(post)"
+      class="btn btn-default btn-sm">Update</button>
+    <button 
       (click)="deletePost(post)"
       class="btn btn-default btn-sm">Delete</button>
     {{ post.title }}
   </li>
 </ul>
-<div *ngIf="itemCount > 0">
-<app-pagination2
-    [pageNumber]="pageNumber"
-    [itemCount]="itemCount"
-    [itemsPerPage]="itemsPerPage"
-    [numberOfPageCombine]="numberOfPageCombine"
-    [backgroundType]="backgroundType"
-    [hiddenArrows]="hiddenArrows"
-    [disableNavigation]="disableNavigation"
-    (pageClick2)="onPageChange($event)"
->
-</app-pagination2>
-</div>
+<!-- <div *ngIf="itemCount > 0"> -->
+  <app-pagination2
+      [pageNumber]="pageNumber"
+      [itemCount]="itemCount"
+      [itemsPerPage]="itemsPerPage"
+      [numberOfPageCombine]="numberOfPageCombine"
+      [backgroundType]="backgroundType"
+      [hiddenArrows]="hiddenArrows"
+      [disableNavigation]="disableNavigation"
+      (pageClick2)="onPageChange($event)"
+  >
+  </app-pagination2>
+<!-- </div> -->
