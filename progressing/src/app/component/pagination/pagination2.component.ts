@@ -26,6 +26,7 @@ export class Pagination2Component implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('Pagination2Component, ngOnInit: itemcount', this.itemCount);
     this.numOfPages = this.calcNumOfPages();
     this.setCurrentPage(this.currentPage);
   }
@@ -58,6 +59,7 @@ export class Pagination2Component implements OnInit {
 
   pageClick2(index: number): void {
     console.log('pageClick2, index: ', index);
+    // console.log('Pagination2Component, ngOnInit: itemcount', this.itemCount);
     if (!this.disableNavigation) {
       this.setCurrentPage(index);
       let indexArray: number[] = [];
