@@ -11,10 +11,10 @@
     <button 
       (click)="deletePost(post)"
       class="btn btn-default btn-sm">Delete</button>
-    {{ post.title }}
+      {{ post.id }} - {{ post.title }}
   </li>
 </ul>
-<div *ngIf="itemCount > 0">
+<div *ngIf="!loading">
   <app-pagination2
       [pageNumber]="pageNumber"
       [itemCount]="itemCount"
