@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { AppErrorHandler } from './common/app-error-handler';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './component/courses/courses.component';
@@ -24,6 +25,7 @@ import { CardhoverDirective } from './directive/cardhover.directive';
 import { CardHostingComponent } from './component/card-hosting/card-hosting.component';
 import { CardComponent } from './component/card-hosting/card.component';
 import { ConsumingHttpComponent } from './component/consuming-http/consuming-http.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -41,14 +43,23 @@ import { ConsumingHttpComponent } from './component/consuming-http/consuming-htt
     CardhoverDirective,
     CardHostingComponent,
     CardComponent,
-    ConsumingHttpComponent
+    ConsumingHttpComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    FirstModuleModule
+    FirstModuleModule,
+
+    RouterModule.forRoot([
+      { path: '', component: AppComponent, pathMatch: 'full'},
+      // { path: 'followers/:username', component: GithubProfileComponent },
+      // { path: 'followers', component: GithubFollowersComponent },
+      { path: 'page', component: ConsumingHttpComponent },
+      { path: '**', component: NotFoundComponent }
+    ])
   ],
   providers: [
     CoursesService,
