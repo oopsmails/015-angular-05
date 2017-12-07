@@ -1362,10 +1362,23 @@ use Solution 1.
 
 ===========================================
 
+====> Error: Uncaught (in promise): EmptyError: no elements in sequence
+Also solved by adding 
+
+pathMatch: 'full'
 
 
 ===========================================
 
+====> Error: angular 4 homepage show twice - Google Search
+
+let's me explain some concept: first your AppComponent is root component, when you 
+using <router-outlet></router-outlet>, it's create a placeholder for any route, 
+then content of Component defined by route (LoginComponent for example) will be 
+put after this point. so in your AppComponent you have <h1>Hello {{name}}</h1> 
+then when navigate to any route, the Component still alive, so you got Hello Angular. 
+To remove this, just remove <h1>Hello {{name}}</h1> so your AppComp like this 
+template: '<router-outlet></router-outlet>'
 
 
 ===========================================

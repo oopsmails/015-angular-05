@@ -26,6 +26,7 @@ import { CardHostingComponent } from './component/card-hosting/card-hosting.comp
 import { CardComponent } from './component/card-hosting/card.component';
 import { ConsumingHttpComponent } from './component/consuming-http/consuming-http.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
+import { ProgressingHomeComponent } from './component/progressing-home/progressing-home.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
     CardHostingComponent,
     CardComponent,
     ConsumingHttpComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProgressingHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,7 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
     FirstModuleModule,
 
     RouterModule.forRoot([
-      { path: '', component: AppComponent, pathMatch: 'full'},
+      { path: '', component: ProgressingHomeComponent, pathMatch: 'full' },
       // { path: 'followers/:username', component: GithubProfileComponent },
       // { path: 'followers', component: GithubFollowersComponent },
       { path: 'page', component: ConsumingHttpComponent },
