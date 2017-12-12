@@ -1022,7 +1022,66 @@ spyOn(service, 'getTodosPromise').and.returnValue(Promise.resolve([ 1, 2, 3] ));
 
 ===========================================
 
-19
+19-Project Getting started
+
+ng new oshop
+npm install --save firebase@4.2.0 angularfire2@4.0.0-rc.1
+
+app.module.ts ::> install firebase
+
+npm install --save bootstrap
+(bootstrap@3.3.7)
+
+npm install --save bootstrap@next
+(bootstrap@4.0.0-beta.2) ::> if 4.0.0 is officially then don't need @next
+
+style.css ::> @import "~bootstrap/dist/css/bootstrap.css";
+
+nav-bar, from https://getbootstrap.com/docs/4.0/examples/starter-template/
+
+ng g c bs-navbar
+
+------
+
+ng g c home
+ng g c products
+ng g c shopping-cart
+ng g c check-out
+ng g c order-success
+ng g c my-orders
+ng g c admin/admin-products
+ng g c admin/admin-orders
+ng g c login
+
+------
+
+https://ng-bootstrap.github.io
+https://ng-bootstrap.github.io/#/components/dropdown/examples
+
+npm i --save @ng-bootstrap/ng-bootstrap
+@ng-bootstrap/ng-bootstrap@1.0.0-beta.7
+
+------
+firebase --version
+npm i g firebase-tools ::> this may need to be installed outside VS Code.
+
+
+firebase login
+
+firebase init
+
+::> hosting
+::> Select a default Firebase project for this directory: oshop (oshop-42246)
+
+--> firebase.json
+
+--> ng build --prod
+
+firebase deploy
+
+Project Console: https://console.firebase.google.com/project/oshop-42246/overview
+Hosting URL: https://oshop-42246.firebaseapp.com
+
 
 ===========================================
 
@@ -1323,6 +1382,11 @@ VS Code:
 Reason: when copy from other resource directly into workspace with git supported, if copied over
 .git of outside, then this error shows up.
 Solution: delete the .git file NOT belong to current git.
+
+====> Complete removing
+
+%USER%\.vscode\extensions
+C:\Users\liu\AppData\Roaming\Code
 
 
 ===========================================
