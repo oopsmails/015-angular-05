@@ -1087,6 +1087,11 @@ Hosting URL: https://oshop-42246.firebaseapp.com
 
 20-Project Authentication and Authorization
 
+ng g s auth
+ng g s auth-guard
+ng g s user
+ng g s admin-auth-guard
+
 Go to firebase, console of oshop app, Authentication ..., enable Google Authentication
 
 login user can be verified in firebase dashboard of the application.
@@ -1094,6 +1099,54 @@ login user can be verified in firebase dashboard of the application.
 --> working with firebase, should ALWAYS unsubscribe!
 1. implements OnDestory interface
 2. use async pipe
+
+--> extract auth to service
+
+--> 38:00
+returnUrl cannot be passed to Google auth and then make it sent back to our application, then
+we have to store it into local storage.
+
+--> 42:45
+Observable.subcribe() is called in AppComponent, theoretically need .unsubscribe, but in practice no need,
+since this AppComponent is root component, we only have a single instance in the DOM, then we have a 
+single subscription of this Observable and it will be there throughout the life time of the application.
+If the user navigates away from this application, then this subscription will not work anymore.
+If willing to unsubscribe, then feel free to implement OnDestory.
+
+For other components, which are added or removed dynamically in the DOM, if using Observable, 
+need to unsubscribe, otherwise, memory leak.
+
+--> firebase only has authentication, but no authorization.
+
+--> 49:50:
+different ways of defining roles,
+
+1. users table, add one boolean column called isAdmin
+simplest, but not scale well with multiple roles, e.g, store manager ...
+
+2. roles table,
+scale better
+
+3. permissions on operations,
+
+--> 01:10:05, at this point, browser will crash!!!
+reason: async pipe, everytime there is a new Observable value, Angular thinks there is a change, and will
+run change detaction, because Angular thinks the state of the application is changed. The thing is we used
+switchMap in auth.service, when Angular runs to html (auth.appUser$ | async as user), the switchMap gives 
+a new value and then .map to another value, then Angular tries to render html till (auth.appUser$ | async as user) and gets a new 
+value ....
+
+get rid of async pipe! 01:12:00
+
+declare AppUser in BsNavbarComponent and subscribe in constructor, then use this appUser in Html.
+Also, no need to unsubscribe appUser in BsNavbarComponent, because there is only one single instance 
+of BsNavbarComponent in our DOM and it will stay there for the life time of our application.
+
+--> !!!! when changed isAdmin from true to false, those links are removed immediately!! 
+because we have that .subcribe in memory!
+!!! don't have to refresh or logout/login !!!
+
+
 
 
 
