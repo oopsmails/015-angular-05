@@ -1085,7 +1085,18 @@ Hosting URL: https://oshop-42246.firebaseapp.com
 
 ===========================================
 
-20
+20-Project Authentication and Authorization
+
+Go to firebase, console of oshop app, Authentication ..., enable Google Authentication
+
+login user can be verified in firebase dashboard of the application.
+
+--> working with firebase, should ALWAYS unsubscribe!
+1. implements OnDestory interface
+2. use async pipe
+
+
+
 
 ===========================================
 
