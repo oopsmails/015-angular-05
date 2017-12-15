@@ -1147,13 +1147,21 @@ because we have that .subcribe in memory!
 !!! don't have to refresh or logout/login !!!
 
 
-
-
-
-
 ===========================================
 
-21
+21-Project Product Management Module
+
+==>
+ng g c admin/product-form
+
+div.form-group>label+input.form-control
+
+==> bootstrap addon, for adding $ sign before price
+
+bootstrap ::> Doc ::> Component ::> 
+
+--> 09:32, new product page ...
+
 
 ===========================================
 
@@ -1438,6 +1446,7 @@ var map: StringToCustomerMap = { };
 VS Code:
 
 ====> vs code clear terminal: ctrl + k
+====> multiple words selection: ctrl + d, or Alt + click
 
 ====> Search "files to exclude"
 *.js, *.js.map, *.json, *.lock, *.md
