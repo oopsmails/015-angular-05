@@ -1499,13 +1499,34 @@ use Solution 1.
 
 ===========================================
 
+====> progressing: bs-navbar
+
+ng g c component/bs-navbar
+
+npm i --save @ng-bootstrap/ng-bootstrap
+
+app.module.ts, app.component.html
+
+
+===========================================
+
+
+
+
+===========================================
+ERROR collection:
+
+
+==> ERROR: ng-bootstrap found version 4, expected 3
+package.json: upgrade from "^4.2.4" to "^5.0.0"
+
+==> ERROR: ERROR in Error: The Angular Compiler requires TypeScript >= 2.4.
+package.json: "typescript": "~2.4.2"
+
 ====> Error: Uncaught (in promise): EmptyError: no elements in sequence
 Also solved by adding 
 
 pathMatch: 'full'
-
-
-===========================================
 
 ====> Error: angular 4 homepage show twice - Google Search
 
@@ -1516,14 +1537,6 @@ put after this point. so in your AppComponent you have <h1>Hello {{name}}</h1>
 then when navigate to any route, the Component still alive, so you got Hello Angular. 
 To remove this, just remove <h1>Hello {{name}}</h1> so your AppComp like this 
 template: '<router-outlet></router-outlet>'
-
-
-===========================================
-
-
-
-
-
 
 
 

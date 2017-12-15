@@ -1,3 +1,4 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StepComponent } from './component/steps/step.component';
 import { Pagination2Component } from './component/pagination/pagination2.component';
 import { UsertokenService } from './service/usertoken/usertoken.service';
@@ -27,6 +28,7 @@ import { CardComponent } from './component/card-hosting/card.component';
 import { ConsumingHttpComponent } from './component/consuming-http/consuming-http.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { ProgressingHomeComponent } from './component/progressing-home/progressing-home.component';
+import { BsNavbarComponent } from './component/bs-navbar/bs-navbar.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { ProgressingHomeComponent } from './component/progressing-home/progressi
     CardComponent,
     ConsumingHttpComponent,
     NotFoundComponent,
-    ProgressingHomeComponent
+    ProgressingHomeComponent,
+    BsNavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,8 @@ import { ProgressingHomeComponent } from './component/progressing-home/progressi
     ReactiveFormsModule,
     HttpModule,
     FirstModuleModule,
+
+    NgbModule.forRoot(),
 
     RouterModule.forRoot([
       { path: '', component: ProgressingHomeComponent, pathMatch: 'full' },
