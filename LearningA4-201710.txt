@@ -1153,6 +1153,8 @@ because we have that .subcribe in memory!
 
 ==>
 ng g c admin/product-form
+ng g s category
+ng g s product
 
 div.form-group>label+input.form-control
 
@@ -1160,7 +1162,12 @@ div.form-group>label+input.form-control
 
 bootstrap ::> Doc ::> Component ::> 
 
---> 09:32, new product page ...
+==> adding ngModel
+
+--> <input ngModel name="title"
+--> app.model.ts, adding FormsModule
+
+--> 25:59, validation ...
 
 
 ===========================================
