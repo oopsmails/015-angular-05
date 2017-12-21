@@ -8,6 +8,8 @@ Using Debugger for Chrome plugin:
 sample as below, one is for debugging unit test, while the other one is for debugging the running
 "progressing" application 
 
+--> of course, need to run "ng test" and "ng serve" before launching debugger.
+
 {
     "type": "chrome",
     "request": "launch",
