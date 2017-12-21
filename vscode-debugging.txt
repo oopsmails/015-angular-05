@@ -2,6 +2,38 @@ Using Debugger for Chrome plugin:
 
 ==> install Debugger for Chrome plugin
 
+=========================== should be using following, NO need to change karma.conf.js
+
+==> .vscode/launch.json, created by vscode ::> Debug view ::> left upper, Open launch.json,
+sample as below, one is for debugging unit test, while the other one is for debugging the running
+"progressing" application 
+
+{
+    "type": "chrome",
+    "request": "launch",
+    "name": "Launch Chrome, progressing unit test",
+    "url": "http://localhost:9876/debug.html",
+    "webRoot": "${workspaceFolder}"
+},
+{
+    "type": "chrome",
+    "request": "launch",
+    "name": "Launch Chrome, debugging progressing",
+    "url": "http://localhost:4200/",
+    "sourceMaps": true,
+    "trace": true,
+    "webRoot": "${workspaceRoot}/progressing/src",
+    "userDataDir": "${workspaceRoot}/.vscode/chrome",
+    "sourceMapPathOverrides": {
+        "webpack:///C:*":"C:/*"
+    }
+}
+
+
+
+
+=========================== following is another way, not as simple as above, more need to change karma.conf.js!
+
 ==> npm install -g karma-cli
 
 karma start karma.conf.js --browsers Chrome
