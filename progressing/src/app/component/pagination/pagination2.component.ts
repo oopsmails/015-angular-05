@@ -6,16 +6,18 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@
   styleUrls: ['./pagination.component.css']
 })
 export class Pagination2Component implements OnInit {
+  // tslint:disable-next-line:no-input-rename
   @Input('pageNumber') currentPage: number;
   @Input() clickedPageNumber: number;
   @Input() itemCount: number;
-  @Input("itemsPerPage") itemsPerPage: number;
-  @Input("numberOfPageCombine") numberOfPageCombine: number;
+  @Input('itemsPerPage') itemsPerPage: number;
+  @Input('numberOfPageCombine') numberOfPageCombine: number;
   @Input() backgroundType: string;
   @Input() hiddenArrows: boolean;
   @Input() disableNavigation: boolean;
 
-  @Output("pageClick2") pageClickEmitter: EventEmitter<number[]> = new EventEmitter();
+  // tslint:disable-next-line:no-output-rename
+  @Output('pageClick2') pageClickEmitter: EventEmitter<number[]> = new EventEmitter();
 
   numOfPages = 0;
   prevLabel = 'PREVIOUS';

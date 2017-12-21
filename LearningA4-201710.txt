@@ -1468,6 +1468,17 @@ Solution: delete the .git file NOT belong to current git.
 %USER%\.vscode\extensions
 C:\Users\liu\AppData\Roaming\Code
 
+====> disable auto update
+
+File > Preferences > Settings (ctrl + comma) and add the update.channel setting with the value "none".
+
+====> auto save
+"files.autoSave": "afterDelay",
+
+Turn on Auto Save is with the File > Auto Save
+
+====> 
+
 
 ===========================================
 
@@ -1489,11 +1500,11 @@ input properties. That means it's guaranteed that everytime data input value cha
 our grouping logic will be triggered if we put our code here.
 
 ngOnChanges(changes: SimpleChanges): void {
-if (changes['pageNumber']) {
-	console.log('Pagination2Component, ngOnChange: itemcount', this.itemCount);
-	this.numOfPages = this.calcNumOfPages();
-	this.setCurrentPage(this.currentPage);
-}
+	if (changes['pageNumber']) {
+		console.log('Pagination2Component, ngOnChange: itemcount', this.itemCount);
+		this.numOfPages = this.calcNumOfPages();
+		this.setCurrentPage(this.currentPage);
+	}
 }
 
 ::> In our pagination case, Solution 2 will NOT work independently ..., need to work with Solution 1. 

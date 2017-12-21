@@ -1,0 +1,40 @@
+Using Debugger for Chrome plugin:
+
+==> install Debugger for Chrome plugin
+
+==> npm install -g karma-cli
+
+karma start karma.conf.js --browsers Chrome
+
+--> karma.conf.js
+customLaunchers: {
+      Chrome_with_debugging: {
+        base: 'Chrome',
+        flags: ['--remote-debugging-port=9222'],
+        debug: true
+      }
+    }
+
+karma start karma.conf.js --browsers Chrome_with_debugging
+
+
+==> .vscode/launch.json, created by vscode ::> Debug view ::> left upper, Open launch.json
+
+see launch.json.progressing.sample
+
+==> Run debug, select by name, e.g, "Attach to Chrome", there will be choices to choose
+to attach, e.g, karma, localhost:9876/?... or localhost:9876/debug.html, select the debug.html one.
+
+==> Then in Chrome, refresh the debug.html page, breakpoint will be hit.
+
+
+
+
+--> ERROR: breakpoint ignored because generated code is not found
+
+make sure the "webRoot" is configured correctly! example:
+"webRoot": "${workspaceFolder}/progressing/src"
+
+
+
+
