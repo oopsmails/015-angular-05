@@ -31,6 +31,14 @@ sample as below, one is for debugging unit test, while the other one is for debu
     }
 }
 
+==> if using "attach", then see, https://github.com/Microsoft/vscode-chrome-debug
+
+Windows
+
+- Right click the Chrome shortcut, and select properties
+- In the "target" field, append --remote-debugging-port=9222
+- Or in a command prompt, execute <path to chrome>/chrome.exe --remote-debugging-port=9222
+
 
 
 
@@ -51,6 +59,8 @@ customLaunchers: {
 
 karma start karma.conf.js --browsers Chrome_with_debugging
 
+-- This is because need to open 9222 for chrome debugging.
+
 
 ==> .vscode/launch.json, created by vscode ::> Debug view ::> left upper, Open launch.json
 
@@ -66,8 +76,14 @@ to attach, e.g, karma, localhost:9876/?... or localhost:9876/debug.html, select 
 
 --> ERROR: breakpoint ignored because generated code is not found
 
-make sure the "webRoot" is configured correctly! example:
+Make sure the "webRoot" is configured correctly! example:
 "webRoot": "${workspaceFolder}/progressing/src"
+
+--> ERROR: Cannot connect to the target: connect ECONNREFUSED 127.0.0.1:9222
+
+Need to open 9222 for chrome debugging.
+Either using the change example in karma.conf.js above, 
+or using "execute <path to chrome>/chrome.exe --remote-debugging-port=9222", as mentioned above.
 
 
 
