@@ -1167,7 +1167,19 @@ bootstrap ::> Doc ::> Component ::>
 --> <input ngModel name="title"
 --> app.model.ts, adding FormsModule
 
---> 25:59, validation ...
+--> 32:00 ng2-validation ...
+
+npm install ng2-validation --save
+
+import { CustomFormsModule } from 'ng2-validation'
+
+url validation
+
+--> 36:30 adding card component ... bootstrap
+
+--> 42:03, to be continued
+
+
 
 
 ===========================================

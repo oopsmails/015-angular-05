@@ -58,8 +58,16 @@ customLaunchers: {
     }
 
 karma start karma.conf.js --browsers Chrome_with_debugging
-
 -- This is because need to open 9222 for chrome debugging.
+
+
+--> karma.conf.js
+client:{
+    clearContext: false // leave Jasmine Spec Runner output visible in browser
+    , useIframe : false <-- this will open a new Chrome even if there is already a Chrome instance opened.
+}
+
+
 
 
 ==> .vscode/launch.json, created by vscode ::> Debug view ::> left upper, Open launch.json
