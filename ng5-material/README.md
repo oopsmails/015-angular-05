@@ -1,27 +1,76 @@
-# Ng5Material
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.3.
+https://coursetro.com/posts/code/113/How-to-Build-an-Angular-5-Material-App
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+-- ng new ng5-material --style=scss --routing
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The two flags we added at the end specify that we want the CSS to use the Sass compiler, and --routing tells the CLI to provide us with the routing scaffolding.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+-- npm install --save @angular/material @angular/cdk
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+-- npm install --save @angular/animations
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+-- /src/app/app.module.ts
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-## Further help
+imports: [
+...,
+BrowserAnimationsModule
+],
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+-- material.module.ts 
+
+-- app.module.ts, import MaterialModule
+
+-- /src/styles.css
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+-- npm install --save hammerjs
+
+-- /src/main.ts
+import 'hammerjs';
+
+-- /src/index.html
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+-- /src/app/app.component.html 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
