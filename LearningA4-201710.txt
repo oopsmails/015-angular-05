@@ -1177,7 +1177,44 @@ url validation
 
 --> 36:30 adding card component ... bootstrap
 
---> 42:03, to be continued
+--> 52:15: ProductFormComponent:
+another way to unsubscribe Observable besides using OnDestory ...
+
+import 'rxjs/add/operator/take';
+
+if (this.id) this.productService.get(this.id).take(1).subscribe(p => this.product = p);
+
+so, after take(1), the Observable will not take any more items, thus, we don't have to unsubscribe.
+
+--> 1:05:31: the click of a button in a form submits the form, because the default type is "submit" ... 
+to prevent this default behavior, need to add type="button", for example, delete button doesn't 
+need to submit the whole form, just pass the id ...
+
+--> 1:08:40: search on server or client?
+- if data volumn is not big, then load all at client side and search(filter)
+- if data volumn is big, then search at server ...
+- this application will not have much data, then implement on client side, then cannot use
+observable in AdminProductsComponent.
+- OnDestroy, and 
+ngOnDestroy() {
+	this.subscription.unsubscribe();
+}
+
+--> 1:17:00, 1:18:10
+angular-4-data-table
+
+npm install angular-4-data-table --save
+
+
+
+
+
+
+
+
+
+
+
 
 
 
