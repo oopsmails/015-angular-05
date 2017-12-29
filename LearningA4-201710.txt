@@ -1605,6 +1605,33 @@ then when navigate to any route, the Component still alive, so you got Hello Ang
 To remove this, just remove <h1>Hello {{name}}</h1> so your AppComp like this 
 template: '<router-outlet></router-outlet>'
 
+====> error TS2339: Property 'take' does not exist on type ' AngularFireObject<{}>'
+====> NullInjectorError: No provider for AngularFireDatabase!
+====> Object literal may only specify known properties, and 'query' does not exist in type 'QueryFn'.
+-- till 20171228
+"angularfire2": "^v5.0.0-rc.5",
+"firebase": "4.8.0", <-- note: no ^ here!
+
+--
+import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
+instead of
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+--
+import { AngularFireDatabase } from 'angularfire2/database-deprecated';
+
+
+====> ERROR in ./node_modules/css-loader?{"sourceMap":false,"importLoaders":1} bootstrap
+
+-- change "bootstrap": "^4.0.0-beta.2",
+to 
+"bootstrap": "4.0.0-beta.2",
+-- npm install
+-- ng serve
+
+====> 
+
+import * as firebase from 'firebase';
+
 
 
 

@@ -1,4 +1,4 @@
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { Injectable } from '@angular/core';
 
 @Injectable()

@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+// import { DataTableModule } from 'angular-4-data-table-bootstrap-4';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-
+import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 import { CustomFormsModule } from 'ng2-validation';
 
 import { environment } from '../environments/environment';
@@ -49,6 +49,7 @@ import { UserService } from './user.service';
     BrowserModule,
     FormsModule,
     CustomFormsModule,
+    // DataTableModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -65,6 +66,11 @@ import { UserService } from './user.service';
 
       {
         path: 'admin/products/new',
+        component: ProductFormComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
+      },
+      {
+        path: 'admin/products/:id',
         component: ProductFormComponent,
         canActivate: [AuthGuard, AdminAuthGuard]
       },
