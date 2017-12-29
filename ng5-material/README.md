@@ -34,6 +34,13 @@ BrowserAnimationsModule
 
 -- /src/main.ts
 import 'hammerjs';
+or:
+-- angular-cli.json
+
+"scripts": [
+  "../node_modules/hammerjs/hammer.min.js"
+],
+
 
 -- /src/index.html
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
