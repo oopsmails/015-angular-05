@@ -10,6 +10,7 @@ import { BasicComponent } from './components/basic/basic.component';
 import { UsertableComponent } from './components/usertable/usertable.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { StockComponent } from './components/stock/stock.component';
 
 @NgModule({
     imports: [MatButtonModule, MatToolbarModule, MatInputModule
@@ -26,9 +27,11 @@ import { BrowserModule } from '@angular/platform-browser';
         , MatSortModule
         , UsertableComponent
         , BasicComponent
+        , StockComponent
     ],
     declarations: [UsertableComponent
         , BasicComponent
+        , StockComponent
     ],
 })
 export class MaterialModule { }

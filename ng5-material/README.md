@@ -49,8 +49,17 @@ or:
 -- /src/app/app.component.html 
 
 
+------------------------------------------------------
 
 
+--> http interceptor for mock services
+
+see usertable.component.ts
+
+
+--> mock-backend, how to share service only ...
+
+--> services\mock-stock.service.ts, using BehaviorSubject to mock Observable.
 
 
 

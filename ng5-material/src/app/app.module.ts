@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
+import { MockBackendModule } from './mock-backend/mock-backend.module';
 import { UserService } from './services/user.service';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { UserService } from './services/user.service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MockBackendModule.forRoot(),
     MaterialModule
   ],
   providers: [
