@@ -18,11 +18,11 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   itemCount: number;
 
   constructor(private productService: ProductService) {
-    this.subscription = this.productService.getAll()
-      .subscribe(products => {
-        this.products = products;
-        // this.initializeTable(products);
-      });
+    // this.subscription = this.productService.getAll()
+    //   .subscribe(products => {
+    //     this.products = products;
+    //     // this.initializeTable(products);
+    //   });
   }
 
   // private initializeTable(products: Product[]) {
@@ -51,7 +51,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   // }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
   ngOnInit() {
