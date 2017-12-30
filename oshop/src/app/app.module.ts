@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-// import { DataTableModule } from 'angular-4-data-table-bootstrap-4';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
@@ -23,16 +22,18 @@ import { CategoryService } from './category.service';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { MaterialModule } from './marterial/material.module';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductService } from './product.service';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductsComponent } from './products/products.component';
+import { ShoppingCartService } from './shopping-cart.service';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { UserService } from './user.service';
-import { MaterialModule } from './marterial/material.module';
-import { ProductFilterComponent } from './products/product-filter/product-filter.component';
-import { ProductCardComponent } from './product-card/product-card.component';
 
+// import { DataTableModule } from 'angular-4-data-table-bootstrap-4';
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,7 +99,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     AdminAuthGuard,
     UserService,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })

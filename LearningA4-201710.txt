@@ -1276,7 +1276,32 @@ bootstrap::position
 
 ===========================================
 
-23
+23-Project Shopping Cart Module
+
+shopping-carts
+
+ng g s shopping-cart
+
+09:55: firebase db rules:
+
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+	"categories": {
+		".read": true
+	},
+	"products": {
+		".read": true
+	},
+	"shopping-carts": {
+		".read": true,
+		".write": true
+	}
+  }
+}
+
+12:05
 
 ===========================================
 
@@ -1762,6 +1787,18 @@ ngAfterViewChecked()
   console.log( "! changement de la date du composant !" );
   this.dateNow = new Date();
   this.cdRef.detectChanges();
+}
+
+====> firebase database permission denied:
+
+Go to Firebase console of your app
+Select Database From Side Menu --> Select Rule From tabs above --> Update your rule like this
+
+{
+    "rules": {    
+        ".read": true,
+        ".write": true
+    }
 }
 
 

@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './../shopping-cart.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../models/product';
 
@@ -12,5 +13,17 @@ export class ProductCardComponent {
   // tslint:disable-next-line:no-input-rename
   @Input('show-actions') showActions = true;
 
-  constructor() { }
+  constructor(private cartService: ShoppingCartService) {}
+
+  addToCart(product: Product) {
+    let cartId = localStorage.getItem('cardId');
+    if (!cartId) {
+      this.cartService.create().then(result => {
+          localStorage.setItem('cardId', result.key);
+          // add product to cart
+      });
+    } else {
+      // add product to cart
+    }
+  }
 }
