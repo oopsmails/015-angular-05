@@ -29,8 +29,9 @@ export class UsertableComponent implements OnInit, AfterViewInit {
     //   console.log('this.users:', this.users);
     //   console.log('itemCount:', this.users.length); // always showing empty if put outside
     //   this.dataSource = new MatTableDataSource(this.users);
-    //   // this.dataSource.paginator = this.paginator;
-    //   // this.dataSource.sort = this.sort;
+    //   console.log('1. this.dataSource:', this.dataSource);
+    //   this.dataSource.paginator = this.paginator;
+    //   this.dataSource.sort = this.sort;
     //   this.loading = false;
     // });
   }
@@ -53,8 +54,10 @@ export class UsertableComponent implements OnInit, AfterViewInit {
       console.log('this.users:', this.users);
       console.log('itemCount:', this.users.length); // always showing empty if put outside
       this.dataSource = new MatTableDataSource(this.users);
+      console.log('1. this.dataSource:', this.dataSource);
       // this.dataSource.paginator = this.paginator;
       // this.dataSource.sort = this.sort;
+      // console.log('2. this.dataSource:', this.dataSource);
       this.loading = false;
     });
   }
@@ -63,6 +66,20 @@ export class UsertableComponent implements OnInit, AfterViewInit {
     // following angular material example, https://material.angular.io/components/table/examples
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    console.log('3. this.dataSource:', this.dataSource);
+
+    // this.mockUserService.getUsers().subscribe((res: Array<User>) => {
+    //   this.loading = true;
+    //   console.log('res:', res);
+    //   this.users = res;
+    //   console.log('this.users:', this.users);
+    //   console.log('itemCount:', this.users.length); // always showing empty if put outside
+    //   this.dataSource = new MatTableDataSource(this.users);
+    //   console.log('1. this.dataSource:', this.dataSource);
+    //   this.dataSource.paginator = this.paginator;
+    //   this.dataSource.sort = this.sort;
+    //   this.loading = false;
+    // });
   }
 
   applyFilter(filterValue: string) { // To override the default filtering behavior, a custom filterPredicate function

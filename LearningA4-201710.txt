@@ -1578,6 +1578,38 @@ app.module.ts, app.component.html
 ===========================================
 
 
+------------------------------------------------------
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+====> about how to use MatTableDataSource
+
+--> usertable.component.ts, if do all together, then the very first time, showing empty
+list ... (possible) reason is when setting paginator, the MatTableDataSource is empty(?)
+
+::> if all in constructor, then paginator and sort will not be working, because
+view is NOT initialized yet(?), just showing all items.
+Could put MatTableDataSource creation here.
+
+::> in ngInit(), create MatTableDataSource, 
+this.dataSource = new MatTableDataSource(this.users);
+
+::> in ngAfterViewInit(), set paginator and sort
+this.dataSource.paginator = this.paginator;
+this.dataSource.sort = this.sort;
+-- put all here, will get error: "ExpressionChangedAfterItHasBeenCheckedError: 
+Expression has changed after it was checked. Previous value: 'undefined'. 
+Current value: '[object Object]'.", because value is changed after view initialized.
+
+
+--> product-list.component.ts, because this is as a child of other page (?), the
+lifecycle hook is not as expected, i.e, sequence of ngAfterViewInit and ngInit is
+messed up.
+So, do all together.
+
+::> in ngInit(), do all
+this.dataSource = new MatTableDataSource(this.products);
+this.dataSource.paginator = this.paginator;
+this.dataSource.sort = this.sort;
 
 
 ===========================================

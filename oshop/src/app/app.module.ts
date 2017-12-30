@@ -29,6 +29,7 @@ import { ProductService } from './product.service';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { UserService } from './user.service';
+import { MaterialModule } from './marterial/material.module';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { UserService } from './user.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    MaterialModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
