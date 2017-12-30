@@ -1240,22 +1240,39 @@ angular-4-data-table
 npm install angular-4-data-table --save
 
 
+-->
 
+Both angular-4-data-table-4 and angular-4-data-table-bootstrap-4 are NOT working fine with Angular ^5.
 
-
-
-
-
-
-
-
-
+IMHO, might be better to upgrade to A5 and Material for this product list part ... I tried and it is working fine.
 
 
 
 ===========================================
 
-22
+22-Project Product Catalog Module
+
+==> 21:20: Problem: refresh the page, the very first time showing empty, even a category
+is already in request parameter.
+
+Solution: Move the second Observable.subcribe into the first Observable.subcribe block,
+or use Observable.switchMap.subcribe, which can switch from one Observable to another
+Observable.
+
+
+==> ng g c products/product-filter
+
+ng g c product-card
+
+==> 38:15: 
+alt="{{ product.title }}" for accessibility
+
+==> 45:20: to make side category stay when scolling down
+bootstrap::position
+.sticky-top { 
+  top: 80px;
+}
+
 
 ===========================================
 
@@ -1646,6 +1663,27 @@ this.dataSource.paginator = this.paginator;
 this.dataSource.sort = this.sort;
 
 
+---------------------
+
+====> Empty list again when as a child, navigate to other page and then come back to this 
+product management page ...
+
+--> Have to add following in BOTH constructor (or ngOnInit) AND ngAfterViewInit
+this.dataSource.paginator = this.paginator;
+this.dataSource.sort = this.sort;
+
+::> Error: assign paginator to undefined
+Solved by adding "if (this.dataSource)" to prevent the very first time, because of parent, ngAfterViewInit
+is before ngOnInit.
+
+::> Error: ExpressionChangedAfterItHasBeenCheckedError: see below ...
+Solved by adding 
+constructor(private cdRef:ChangeDetectorRef, ...){ ... }
+and 
+this.cdRef.detectChanges();
+
+
+
 ===========================================
 ERROR collection:
 
@@ -1697,6 +1735,34 @@ to
 ====> 
 
 import * as firebase from 'firebase';
+
+====> Error: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked.
+
+--> see product-list.component.ts
+
+ngAfterViewInit() {
+    if (this.dataSource) {
+    //   console.log('this.dataSource:', this.dataSource);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.cdRef.detectChanges(); <-- here!!!!
+    }
+}
+-->
+https://stackoverflow.com/questions/39787038/how-to-manage-angular2-expression-has-changed-after-it-was-checked-exception-w
+
+Run change detection explicitly after the change:
+
+import { ChangeDetectorRef } from '@angular/core';
+
+constructor(private cdRef:ChangeDetectorRef) {}
+
+ngAfterViewChecked()
+{
+  console.log( "! changement de la date du composant !" );
+  this.dateNow = new Date();
+  this.cdRef.detectChanges();
+}
 
 
 
