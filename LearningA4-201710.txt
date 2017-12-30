@@ -1,5 +1,39 @@
 ================================================
 
+====> use nvm to upgrade nodejs.
+====> if upgrading npm, NOT installing refreshly!
+
+npm -g install npm
+npm install npm@latest
+
+-- https://stackoverflow.com/questions/26908899/how-do-i-update-npm-on-windows/26908900
+You need to follow the Windows upgrade instructions ( https://github.com/npm/npm/wiki/Troubleshooting#upgrading-on-windows )
+
+tl;dr - npm -g install npm does work, but the old version of npm is still in your PATH.
+
+To fix this, do one of these:
+
+Option 2: remove both of
+
+C:\Program Files (x86)\nodejs\npm
+
+C:\Program Files (x86)\nodejs\npm.cmd
+
+Or
+
+Option 3: Open cmd.exe as administrator, navigate to C:\Program Files (x86)\nodejs and then run the installation without -g:
+
+npm install npm@latest
+
+================================================
+
+====> Starting from npm v5.0 (201705), a package-lock.json will be generated when npm install.
+
+--> this file should be checked into repo as well!
+
+
+================================================
+
 00-Setting up ....
 
 https://github.com/mosh-hamedani/organic-shop
