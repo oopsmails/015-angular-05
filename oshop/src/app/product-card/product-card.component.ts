@@ -1,6 +1,7 @@
 import { ShoppingCartService } from './../shopping-cart.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../models/product';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -12,6 +13,8 @@ export class ProductCardComponent {
   @Input('product') product: Product;
   // tslint:disable-next-line:no-input-rename
   @Input('show-actions') showActions = true;
+  // tslint:disable-next-line:no-input-rename
+  @Input('shopping-cart') shoppingCart: ShoppingCart;
 
   constructor(private cartService: ShoppingCartService) {}
 

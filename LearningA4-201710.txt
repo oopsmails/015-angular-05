@@ -1301,7 +1301,80 @@ ng g s shopping-cart
   }
 }
 
-27:05
+==> 27:05
+
+--> refactoring shopping-cart.service.ts:
+
+if (item.$exists()) {
+item$.update({ quantity: item.quantity + 1} );
+} else {
+item$.set({ product: product, quantity: 1 });
+}
+::>
+item$.set({ product: product, quantity: 1 });
+::>
+item$.update({ product: product, quantity: 1 });
+::>
+item$.update({ product: product, quantity: item.quantity + 1} );
+item$.update({ product: product, quantity: (item.quantity || 0) + 1} );
+::> no if and else
+
+==> 39:30
+
+--> shopping-cart.service.ts, await and async
+
+async getCart(): Promise<Observable<ShoppingCart>> {
+	let cartId = await this.getOrCreateCartId();
+	return this.db.object('/shopping-carts/' + cartId)
+		.map(x => new ShoppingCart(x.items));
+}
+
+private async getOrCreateCartId(): Promise<string> { 
+	let cartId = localStorage.getItem('cartId');
+	if (cartId) return cartId; 
+
+	let result = await this.create();
+	localStorage.setItem('cartId', result.key);
+	return result.key;
+}
+
+1. use await to make Promise call like in sequence, but need to mark the method as async
+2. Promise<FirebaseObservable<any>> can be casted as Promise<Observable<ShoppingCart>>
+3. constructor cannot be await, use async ngOnInit().
+
+1:39:01:
+--> about product.$key
+There is no join in object dbs.
+Add quantity as a field of Product of shopping-cart(table), this concept is different from the real 
+Product of products(table).
+So, storing a Product object in shopping-cart table if only for displaying, in another words, we only
+need those fields which will be displayed in shopping-cart, e.g, categroy is NOT needed, instead, we 
+can add quantity field.
+
+1:47:00
+Object.assign<T, U>(target: T, source U): T & U
+
+ShoppingCartItem: 1:56:25, Partial means it is like ShoppingCartItem, but partially filled.
+constructor(init?: Partial<ShoppingCartItem>) {
+    Object.assign(this, init);
+}
+
+this.itemsMap = itemsMap || {};
+
+
+1:54:51: spread operator, shopping-cart.ts
+constructor(private itemsMap: { [productId: string]: ShoppingCartItem }) {
+    this.itemsMap = itemsMap || {};
+    
+    for (let productId in itemsMap) {
+      let item = itemsMap[productId];
+      this.items.push(new ShoppingCartItem({ ...item, $key: productId }));
+    }
+}
+
+2:08:00: original image, resized in div, style.backgroundImage ...
+
+
 
 ===========================================
 

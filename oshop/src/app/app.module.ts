@@ -32,6 +32,7 @@ import { ProductsComponent } from './products/products.component';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { UserService } from './user.service';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 // import { DataTableModule } from 'angular-4-data-table-bootstrap-4';
 @NgModule({
@@ -49,7 +50,8 @@ import { UserService } from './user.service';
     ProductsComponent,
     ProductFormComponent,
     ProductFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,
