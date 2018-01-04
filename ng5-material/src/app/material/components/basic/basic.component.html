@@ -1,12 +1,20 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>MyMaterial</span>
+    <span>
+      <a class="nav-link" routerLink="/">Material Test</a>
+    </span>
 
     <span class="example-spacer"></span>
 
-    <button mat-button>User Table</button>
-    <button mat-button>Services</button>
-    <button mat-button>Contact</button>
+    <a mat-button routerLink="/datatable">
+        User Table
+    </a>
+    <a mat-button routerLink="/stock">
+        Stock
+    </a>
+    <a mat-button routerLink="/dialog">
+      Dialog
+    </a>
   </mat-toolbar-row>
 </mat-toolbar>
 
