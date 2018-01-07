@@ -29,6 +29,9 @@ import { ConsumingHttpComponent } from './component/consuming-http/consuming-htt
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { ProgressingHomeComponent } from './component/progressing-home/progressing-home.component';
 import { BsNavbarComponent } from './component/bs-navbar/bs-navbar.component';
+import { BloggerComponent } from './component/blogger/blogger.component';
+import { PageThreeWaysComponent, Posts1Component, Posts2Component, Posts3Component } from './component/blogger/index';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -49,13 +52,15 @@ import { BsNavbarComponent } from './component/bs-navbar/bs-navbar.component';
     ConsumingHttpComponent,
     NotFoundComponent,
     ProgressingHomeComponent,
-    BsNavbarComponent
+    BsNavbarComponent,
+    PageThreeWaysComponent, BloggerComponent, Posts1Component, Posts2Component, Posts3Component,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    HttpClientModule,
     FirstModuleModule,
 
     NgbModule.forRoot(),
@@ -65,6 +70,7 @@ import { BsNavbarComponent } from './component/bs-navbar/bs-navbar.component';
       // { path: 'followers/:username', component: GithubProfileComponent },
       // { path: 'followers', component: GithubFollowersComponent },
       { path: 'page', component: ConsumingHttpComponent },
+      { path: '3ways', component: PageThreeWaysComponent },
       { path: '**', component: NotFoundComponent }
     ])
   ],
