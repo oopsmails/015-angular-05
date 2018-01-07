@@ -3,7 +3,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Product } from '../../shared/models/product';
-import { ProductService } from '../../product.service';
+import { ProductService } from '../../shared/services/product.service';
 
 @Component({
   selector: 'app-product-list',

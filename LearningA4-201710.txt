@@ -1431,10 +1431,18 @@ font-awesome.
 52:15: move bs-navbar elements into <div class="container"></div> to line up the nav bar and
 page contents.
 57:20: change from css to scss
+1. rename style.css to style.scss
+2. angular-cli.json: style.css to style.scss
+3. need restart
+
+
 --> many tricks of css!!!
 
 
+---------------------
+app-product-list is used in admin-products.component.html, 
 
+will be in admin module, material.module.ts ???
 
 
 

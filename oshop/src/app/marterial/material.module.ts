@@ -9,7 +9,7 @@ import {
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductListComponent } from './product-list/product-list.component';
-import { ProductService } from '../product.service';
+import { ProductService } from '../shared/services/product.service';
 import { environment } from '../../environments/environment';
 import { RouterModule } from '@angular/router';
 
