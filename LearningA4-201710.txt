@@ -1116,6 +1116,31 @@ firebase deploy
 Project Console: https://console.firebase.google.com/project/oshop-42246/overview
 Hosting URL: https://oshop-42246.firebaseapp.com
 
+--------
+Sample:
+PS C:\Github\angular-05\oshop> ng build -prod
+ 10% building modules 6/7 modules 1 active ...ules\bootstrap\dist\css\bootstrap.cssNode#moveTo was deprecated. Use Con
+tainer#append.                     Date: 2018-01-07T11:18:43.968Z
+Hash: 874ed382e8dc1ac5e2e7
+Time: 109831ms
+chunk {0} main.fb9c1f194b9d839d7538.bundle.js (main) 1.37 MB [initial] [rendered]
+chunk {1} polyfills.48f66999ee0cd36049d3.bundle.js (polyfills) 61.4 kB [initial] [rendered]
+chunk {2} styles.a5c222cd169b5e16acc3.bundle.css (styles) 203 kB [initial] [rendered]
+chunk {3} inline.3f26ce7c406a2ec248a6.bundle.js (inline) 1.45 kB [entry] [rendered]
+PS C:\Github\angular-05\oshop> firebase deploy
+
+=== Deploying to 'oshop-42246'...
+
+i  deploying hosting
+i  hosting: preparing dist directory for upload...
++  hosting: 13 files uploaded successfully
+
++  Deploy complete!
+
+Project Console: https://console.firebase.google.com/project/oshop-42246/overview
+Hosting URL: https://oshop-42246.firebaseapp.com
+
+--------
 
 ===========================================
 
@@ -1939,6 +1964,20 @@ Select Database From Side Menu --> Select Rule From tabs above --> Update your r
         ".write": true
     }
 }
+
+====> when ng build --prod
+ERROR in src\app\admin\components\product-form\product-form.component.html(6,33): : Property 'title' does not exist on
+ type '{}'.
+src\app\admin\components\product-form\product-form.component.html(16,35): : Property 'price' does not exist on type '{
+}'.
+
+Solution:
+product.ts, upgrade to class instead of interface, then add constructor.
+
+constructor(init?: Partial<Product>) {
+	Object.assign(this, init);
+}
+
 
 
 
