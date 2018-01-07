@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, OnChanges, ChangeDetectorRef } from '@angular/core';
+import {
+    AfterViewInit, ChangeDetectorRef, Component, OnChanges, OnDestroy, OnInit, ViewChild
+} from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
-
-import { Product } from '../../shared/models/product';
-import { ProductService } from '../../shared/services/product.service';
+import { Product } from 'shared/models/product';
+import { ProductService } from 'shared/services/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -32,15 +33,15 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnChanges, O
 
 
     this.subscription = this.productService.getAll()
-    .subscribe((products: Array<Product>) => {
-      this.loading = true;
-      this.products = products;
-      console.log('this.products:', this.products);
-      this.dataSource = new MatTableDataSource(this.products);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.loading = false;
-    });
+      .subscribe((products: Array<Product>) => {
+        this.loading = true;
+        this.products = products;
+        console.log('this.products:', this.products);
+        this.dataSource = new MatTableDataSource(this.products);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.loading = false;
+      });
   }
 
   ngOnChanges() {
@@ -53,7 +54,7 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnChanges, O
 
   ngAfterViewInit() {
     if (this.dataSource) {
-    //   console.log('this.dataSource:', this.dataSource);
+      //   console.log('this.dataSource:', this.dataSource);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.cdRef.detectChanges();
