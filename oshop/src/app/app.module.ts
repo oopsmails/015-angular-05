@@ -15,7 +15,7 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { AppComponent } from './app.component';
-import { AuthGuard } from './auth-guard.service';
+import { AuthGuard } from './shared/services/auth-guard.service';
 import { AuthService } from './auth.service';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { CategoryService } from './category.service';

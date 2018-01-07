@@ -1,7 +1,7 @@
 import { ShoppingCartService } from './../shopping-cart.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../models/product';
-import { ShoppingCart } from '../models/shopping-cart';
+import { Product } from '../shared/models/product';
+import { ShoppingCart } from '../shared/models/shopping-cart';
 
 @Component({
   // tslint:disable-next-line:component-selector

@@ -1378,11 +1378,15 @@ constructor(private itemsMap: { [productId: string]: ShoppingCartItem }) {
 
 ===========================================
 
-24
+24-Project Check Out Module
 
 ===========================================
 
-25
+25-Project Modularization and Final Improvements
+
+09:58: adding baseUrl in tsconfig.json
+
+
 
 ===========================================
 

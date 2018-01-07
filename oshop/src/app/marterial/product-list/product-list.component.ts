@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, OnChanges, Chan
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Product } from '../../models/product';
+import { Product } from '../../shared/models/product';
 import { ProductService } from '../../product.service';
 
 @Component({
