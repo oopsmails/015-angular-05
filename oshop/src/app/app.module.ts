@@ -16,9 +16,9 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared/services/auth-guard.service';
-import { AuthService } from './auth.service';
+import { AuthService } from './shared/services/auth.service';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
-import { CategoryService } from './category.service';
+import { CategoryService } from './shared/services/category.service';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';

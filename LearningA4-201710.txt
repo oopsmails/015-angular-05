@@ -1386,6 +1386,60 @@ constructor(private itemsMap: { [productId: string]: ShoppingCartItem }) {
 
 09:58: adding baseUrl in tsconfig.json
 
+16:54: 
+ng g m shared
+23:54:
+ng g m admin
+26:30:
+Error: there is no directive with "exportAs" set to "ngForm"
+Solution: Add FormsModule in xxx.module.ts. 
+CommonModule, FormsModule ... etc, will be put in shared.module.ts (both import and export) ... 
+and later on used in any other modules.
+
+
+30:16:
+Use RouterModule.forChild in all child module.
+RouterModule.forRoot is only in the root module of an application.
+
+34:24:
+ng g m shopping
+
+38:52:
+ng g m core
+
+40:30: links in nav bar not working
+Need to properly import RouterModule in the core.module.ts
+Attention to the circular dependencies problem, so leave the {path: ''} in app.module.ts ...
+
+46:34: adding NgbModule.forRoot() in shared.module.ts
+
+NgbModule.forRoot().ngModule has to be used in exports of shared.module.ts,
+because we NgbModule.forRoot() is with ngModule and is also with providers, but here we only 
+export its ngModule, not with providers ..., in app.module.ts, we don't have this problem, 
+because it NOT in exports.
+
+
+48:54: add icon to navigation bar. Since bootstrap dropped glyphicon, so, we need install 
+font-awesome.
+49:11: 
+1. npm i font-awesome --save
+2. import it in our global style sheet, style.css
+@import "~font-awesome/css/font-awesome.css";
+3. bs-navbar.component.html
+<i class="fa fa-leaf" aria-hidden="true"></i>
+
+52:15: move bs-navbar elements into <div class="container"></div> to line up the nav bar and
+page contents.
+57:20: change from css to scss
+--> many tricks of css!!!
+
+
+
+
+
+
+
+
 
 
 ===========================================

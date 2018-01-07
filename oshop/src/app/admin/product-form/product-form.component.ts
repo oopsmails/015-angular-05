@@ -1,4 +1,4 @@
-import { CategoryService } from './../../category.service';
+import { CategoryService } from '../../shared/services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../product.service';
 import { Router, ActivatedRoute } from '@angular/router';
