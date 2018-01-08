@@ -7,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bs-navbar.component.css']
 })
 export class BsNavbarComponent implements OnInit {
+  collapsed = true;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
+  }
 }

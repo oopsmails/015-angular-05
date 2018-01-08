@@ -14,6 +14,8 @@ export class BsNavbarComponent implements OnInit {
   appUser: AppUser;
   cart$: Observable<ShoppingCart>;
 
+  collapsed = true;
+
   constructor(private auth: AuthService, private shoppingCartService: ShoppingCartService) {
   }
 
@@ -26,4 +28,12 @@ export class BsNavbarComponent implements OnInit {
     this.auth.logout();
   }
 
+  toggleCollapsed(): void {
+      this.collapsed = !this.collapsed;
+  }
+
+
+    private newFunction() {
+        return this.collapsed;
+    }
 }
