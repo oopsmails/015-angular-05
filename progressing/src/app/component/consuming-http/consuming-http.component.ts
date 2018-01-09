@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { NotFoundError } from '../../common/not-found-error';
+import { PaginationConfig } from '../pagination/pagination-config';
 
 @Component({
   selector: 'app-consuming-http',
@@ -15,6 +16,8 @@ export class ConsumingHttpComponent implements OnInit {
   private allPosts: any[];
 
   private allPostSubject = new Subject<any[]>();
+
+  paginationConfig: PaginationConfig = new PaginationConfig();
 
   // pager object
   pager: any = {};
@@ -27,10 +30,10 @@ export class ConsumingHttpComponent implements OnInit {
   pageNumber = 0;
   itemsPerPage = 5;
 
-  numberOfPageCombine = 1;
-  backgroundType = 'light';
-  hiddenArrows = false;
-  disableNavigation = false;
+  // numberOfPageCombine = 1;
+  // backgroundType = 'light';
+  // hiddenArrows = false;
+  // disableNavigation = false;
 
   constructor(private service: PostsService) {
   }
@@ -43,7 +46,9 @@ export class ConsumingHttpComponent implements OnInit {
   getPosts(pageInfo): void {
     this.loading = true;
     this.service.getAll().subscribe(postsRet => {
-      this.itemCount = postsRet.length;
+      this.paginationConfig.itemCount = postsRet.length;
+      this.paginationConfig.numberOfPageCombine = 3;
+
       this.allPosts = postsRet;
       const startIndex = pageInfo.page * pageInfo.size;
       const endIndex = (startIndex + pageInfo.size) < this.allPosts.length ? (startIndex + pageInfo.size) : this.allPosts.length;

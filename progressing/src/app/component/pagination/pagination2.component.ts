@@ -1,22 +1,23 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges } from '@angular/core';
+import { PaginationConfig } from './pagination-config';
 
 @Component({
   selector: 'app-pagination2',
   templateUrl: './pagination2.component.html',
   styleUrls: ['./pagination.component.css']
 })
-export class Pagination2Component implements OnInit {
-  // tslint:disable-next-line:no-input-rename
-  @Input('pageNumber') currentPage: number;
-  @Input() clickedPageNumber: number;
-  @Input() itemCount: number;
-  @Input('itemsPerPage') itemsPerPage: number;
-  @Input('numberOfPageCombine') numberOfPageCombine: number;
-  @Input() backgroundType: string;
-  @Input() hiddenArrows: boolean;
-  @Input() disableNavigation: boolean;
+export class Pagination2Component implements OnInit, OnChanges {
+  // @Input('pageNumber') currentPage: number;
+  // @Input() clickedPageNumber: number;
+  // @Input() itemCount: number;
+  // @Input('itemsPerPage') itemsPerPage: number;
+  // @Input('numberOfPageCombine') numberOfPageCombine: number;
+  // @Input() backgroundType: string;
+  // @Input() hiddenArrows: boolean;
+  // @Input() disableNavigation: boolean;
 
-  // tslint:disable-next-line:no-output-rename
+  @Input() paginationConfig: PaginationConfig;
+
   @Output('pageClick2') pageClickEmitter: EventEmitter<number[]> = new EventEmitter();
 
   numOfPages = 0;
@@ -28,40 +29,42 @@ export class Pagination2Component implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Pagination2Component, ngOnInit: itemcount', this.itemCount);
+    console.log('Pagination2Component, ngOnInit: itemcount', this.paginationConfig.itemCount);
     this.numOfPages = this.calcNumOfPages();
-    this.setCurrentPage(this.currentPage);
+    this.setCurrentPage(this.paginationConfig.currentPage);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('Pagination2Component, ngOnChanges1: itemcount', this.itemCount);
+    console.log('Pagination2Component, ngOnChanges1: itemcount', this.paginationConfig.itemCount);
     if (changes['currentPage']) {
-      console.log('Pagination2Component, ngOnChange2: itemcount', this.itemCount);
+      console.log('Pagination2Component, ngOnChange2: itemcount', this.paginationConfig.itemCount);
       this.numOfPages = this.calcNumOfPages();
-      this.setCurrentPage(this.currentPage);
+      this.setCurrentPage(this.paginationConfig.currentPage);
     }
   }
 
   calcNumOfPages(): number {
-    const count = this.itemsPerPage < 1 ? 1 : Math.ceil(this.itemCount / this.itemsPerPage);
+    const count = this.paginationConfig.itemsPerPage < 1 ?
+      1 : Math.ceil(this.paginationConfig.itemCount / this.paginationConfig.itemsPerPage);
     return Math.max(count || 0, 1);
   }
 
   setListItemClass(index: number): string[] {
-    var CSS_CLASSES = {
+    const CSS_CLASSES = {
       SELECTED: 'progress-pagination__number__item--selected',
       SINGLE: 'progress-pagination__number__item--selected--single',
       FIRST: 'progress-pagination__number__item--selected--first',
       LAST: 'progress-pagination__number__item--selected--last'
     };
-    if (this.numberOfPageCombine === 1 && index === this.currentPage) {
+    if (this.paginationConfig.numberOfPageCombine === 1 && index === this.paginationConfig.currentPage) {
       return [CSS_CLASSES.SELECTED, CSS_CLASSES.SINGLE];
     } else {
-      if (index === this.currentPage) {
+      if (index === this.paginationConfig.currentPage) {
         return [CSS_CLASSES.SELECTED, CSS_CLASSES.FIRST];
-      } else if (index === this.currentPage + this.numberOfPageCombine - 1) {
+      } else if (index === this.paginationConfig.currentPage + this.paginationConfig.numberOfPageCombine - 1) {
         return [CSS_CLASSES.SELECTED, CSS_CLASSES.LAST];
-      } else if (index > this.currentPage && index < this.currentPage + this.numberOfPageCombine - 1) {
+      } else if (index > this.paginationConfig.currentPage
+          && index < this.paginationConfig.currentPage + this.paginationConfig.numberOfPageCombine - 1) {
         return [CSS_CLASSES.SELECTED];
       }
     }
@@ -71,17 +74,17 @@ export class Pagination2Component implements OnInit {
   pageClick2(index: number): void {
     console.log('pageClick2, index: ', index);
     // console.log('Pagination2Component, ngOnInit: itemcount', this.itemCount);
-    if (!this.disableNavigation) {
+    if (!this.paginationConfig.disableNavigation) {
       this.setCurrentPage(index);
       let indexArray: number[] = [];
-      if (this.numberOfPageCombine > 1) {
+      if (this.paginationConfig.numberOfPageCombine > 1) {
         if (index >= this.getLastPageNumber()) {
           indexArray = this.range(this.getLastPageNumber(), this.numOfPages);
         } else {
-          indexArray = Array.from({ length: (this.numberOfPageCombine) }, (v, k) => k + index);
+          indexArray = Array.from({ length: (this.paginationConfig.numberOfPageCombine) }, (v, k) => k + index);
         }
       } else {
-        //call service based on pageNumberClicked to get data
+        // call service based on pageNumberClicked to get data
         // console.log('pageClick, pageNumberClicked: ', index);
         indexArray.push(index);
       }
@@ -91,13 +94,13 @@ export class Pagination2Component implements OnInit {
   }
 
   setCurrentPage(index): void {
-    if (!this.disableNavigation || this.numberOfPageCombine > 1) {
+    if (!this.paginationConfig.disableNavigation || this.paginationConfig.numberOfPageCombine > 1) {
       if (index > -1 && index < this.getLastPageNumber()) {
-        this.currentPage = index;
+        this.paginationConfig.currentPage = index;
       } else if (index < 0) {
-        this.currentPage = 0;
+        this.paginationConfig.currentPage = 0;
       } else {
-        this.currentPage = this.getLastPageNumber();
+        this.paginationConfig.currentPage = this.getLastPageNumber();
       }
       // console.log("setCurrentPage, this.currentPage: ", this.currentPage);
     }
@@ -105,7 +108,7 @@ export class Pagination2Component implements OnInit {
 
   getLastPageNumber(): number {
     // console.log("getLastPageNumber, lastPageNum: ", this.numOfPages - this.numberOfPageCombine + 1);
-    return this.numOfPages - this.numberOfPageCombine;
+    return this.numOfPages - this.paginationConfig.numberOfPageCombine;
   }
 
   range = (start: number, end: number): Array<number> =>

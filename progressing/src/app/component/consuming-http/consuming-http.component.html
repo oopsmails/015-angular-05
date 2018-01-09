@@ -16,13 +16,7 @@
 </ul>
 <div *ngIf="!loading">
   <app-pagination2
-      [pageNumber]="pageNumber"
-      [itemCount]="itemCount"
-      [itemsPerPage]="itemsPerPage"
-      [numberOfPageCombine]="numberOfPageCombine"
-      [backgroundType]="backgroundType"
-      [hiddenArrows]="hiddenArrows"
-      [disableNavigation]="disableNavigation"
+      [paginationConfig]="paginationConfig"
       (pageClick2)="onPageChange($event)"
   >
   </app-pagination2>

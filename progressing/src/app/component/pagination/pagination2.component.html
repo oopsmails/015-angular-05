@@ -2,7 +2,7 @@
 
 <div 
 class="progress-pagination" 
-[class.progress-pagination--advdash]="backgroundType == 'light'"
+[class.progress-pagination--advdash]="paginationConfig.backgroundType == 'light'"
 aria-labelledby="progress-aria-pagination-header"
 >
 <h2 
@@ -21,12 +21,12 @@ aria-labelledby="progress-aria-pagination-header"
 
   <!--PREV PAGE-->
   <li class="progress-pagination__prev"
-    *ngIf="!hiddenArrows">
+    *ngIf="!paginationConfig.hiddenArrows">
     <a href="javascript:void(0)"
       role="button"
-      attr.aria-disabled="{{ currentPage === 0 }}"
-      (click)="pageClick2(currentPage - 1)"
-      [class.progress-inactive]="currentPage === 0">
+      attr.aria-disabled="{{ paginationConfig.currentPage === 0 }}"
+      (click)="pageClick2(paginationConfig.currentPage - 1)"
+      [class.progress-inactive]="paginationConfig.currentPage === 0">
 
         <!-- <progress-icon *ngIf="currentPage === 0"
                     size="9x13" 
@@ -43,7 +43,7 @@ aria-labelledby="progress-aria-pagination-header"
                     size="9x13" 
                     iconId="refresh">
         </progress-icon> -->
-        <span *ngIf="currentPage !== 0">prev</span>
+        <span *ngIf="paginationConfig.currentPage !== 0">prev</span>
     </a>
   </li>
 
@@ -56,7 +56,7 @@ aria-labelledby="progress-aria-pagination-header"
     >
     <a href="javascript:void(0)" 
       role="button" 
-      attr.aria-pressed="{{ currentPage === index }}" 
+      attr.aria-pressed="{{ paginationConfig.currentPage === index }}" 
       (click)="pageClick2(index)"
       >
       {{ index + 1 }}
@@ -65,12 +65,12 @@ aria-labelledby="progress-aria-pagination-header"
 
   <!--NEXT PAGE-->
   <li class="progress-pagination__next"
-      *ngIf="!hiddenArrows">
+      *ngIf="!paginationConfig.hiddenArrows">
     <a href="javascript:void(0)"
       role="button"
-      attr.aria-disabled="{{ currentPage >= getLastPageNumber() }}"
-      (click)="pageClick2(currentPage + 1)"
-      [class.progress-inactive]="currentPage >= getLastPageNumber()">
+      attr.aria-disabled="{{ paginationConfig.currentPage >= getLastPageNumber() }}"
+      (click)="pageClick2(paginationConfig.currentPage + 1)"
+      [class.progress-inactive]="paginationConfig.currentPage >= getLastPageNumber()">
 
         <!-- <progress-icon *ngIf="currentPage >= getLastPageNumber()"
                 size="9x13" 
@@ -83,7 +83,7 @@ aria-labelledby="progress-aria-pagination-header"
 
         <!-- <span [innerText]="nextLabel | translate" class="vh"></span> -->
         <!-- <span class="vh">next</span> -->
-        <span *ngIf="currentPage < getLastPageNumber()">next</span>
+        <span *ngIf="paginationConfig.currentPage < getLastPageNumber()">next</span>
     </a>
 </li>
 
