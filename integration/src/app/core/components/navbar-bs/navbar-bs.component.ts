@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarBsComponent implements OnInit {
 
   collapsed = true;
+  includeSandbox = true;
 
   constructor() { }
 
