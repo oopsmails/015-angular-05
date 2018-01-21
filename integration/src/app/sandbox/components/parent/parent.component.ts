@@ -5,11 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.css']
 })
-export class ParentComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class ParentComponent {
+  live = true;
 }
