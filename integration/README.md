@@ -23,6 +23,16 @@ font-awesome.
 3. bs-navbar.component.html
 <i class="fa fa-leaf" aria-hidden="true"></i>
 
+----
 
+navbar-bs:
+
+-- routerLink not working: 
+need to add RouterModule.forChild([]) in core.module.ts, because using routerLink="...".
+
+-- dropdown not working: 
+need to add NgbModule.forRoot().ngModule in shared.module.ts and then add SharedModule
+in core.module.ts, because 
+<div ngbDropdownMenu ...
 
 

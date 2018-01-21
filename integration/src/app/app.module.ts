@@ -6,8 +6,7 @@ import { SharedModule } from 'shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-
-
+import { SandboxModule } from './sandbox/sandbox.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +16,7 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     SharedModule,
     CoreModule,
+    SandboxModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent }
     ])
