@@ -1800,9 +1800,9 @@ ngOnChanges(changes: SimpleChanges): void {
 If not going to do things, e.g, sorting in pagination component, then MAY NOT need Solution 2, just
 use Solution 1.
 
---> Solution 3: NOT tried
+--> Solution 3: Use RxJs BehaviorSubject
 
-
+==> see progressing/src/app/component/blogger
 
 ===========================================
 

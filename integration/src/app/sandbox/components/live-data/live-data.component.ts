@@ -9,8 +9,9 @@ import { Component, OnInit, ChangeDetectorRef, Input, OnChanges, SimpleChanges }
 export class LiveDataComponent implements OnInit, OnChanges {
   @Input() live: boolean;
 
-  // constructor(private ref: ChangeDetectorRef, private dataProvider: DataProviderService) { }
+  constructor(private ref: ChangeDetectorRef, private dataProvider: DataProviderService) { }
 
+  // @Input()
   // set live(value) {
   //   if (value) {
   //     this.ref.reattach();
@@ -19,19 +20,18 @@ export class LiveDataComponent implements OnInit, OnChanges {
   //   }
   // }
 
-  constructor(private dataProvider: DataProviderService) { }
-
   ngOnInit(): void {
     console.log('ngOnInit: ', this.live);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log('ngOnChanges: ', changes);
-    // if (changes['live']) {
-    //   console.log('ngOnChanges: ', this.live);
-    // }
+    console.log('ngOnChanges: ', changes);
     if (this.live) {
       console.log('ngOnChanges: ', this.live);
+      this.ref.reattach();
+    } else {
+      console.log('ngOnChanges: ', this.live);
+      this.ref.detach();
     }
   }
 
