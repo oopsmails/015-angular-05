@@ -4,8 +4,7 @@
   <input type="checkbox" [(ngModel)]="live">
   <br>
   <live-data [live]="live"></live-data>
-  <br>
-  live: {{ live }}
+  <br> live: {{ live }}
 </p>
 
 <p>
@@ -14,8 +13,16 @@
   <input type="checkbox" [(ngModel)]="live2">
   <br>
   <live-data [live]="live2"></live-data>
-  <br>
-  live2: {{ live2 }}
+  <br> live2: {{ live2 }}
+</p>
+
+<p>
+  <joke-list>
+    <joke [joke]="joke">
+      <span class="setup">{{ joke.setup }}?</span>
+      <h1 class="punchline">{{ joke.punchline }}</h1>
+    </joke>
+  </joke-list>
 </p>
 
 

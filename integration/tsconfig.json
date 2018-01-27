@@ -19,7 +19,8 @@
     "paths": {
       "shared/*": [
         "app/shared/*"
-      ]
+      ],
+      "@core/*": ["app/core/*"]
     }
   }
 }

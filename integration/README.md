@@ -1,4 +1,18 @@
 
+Sandbox:
+ng g m sandbox
+ng g c sandbox\components\parent
+ng g s shared\services\data-provider
+ng g c sandbox\components\live-data
+ng g c sandbox\components\view-child\joke-list
+
+parent: parent
+live-data: ChangeDetectorRef
+joke-list: @ViewChild
+
+
+
+====================================================
 ng new integration
 cd integration
 
