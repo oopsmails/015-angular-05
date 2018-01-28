@@ -8,7 +8,7 @@ ng g c sandbox\components\view-child\joke-list
 
 parent: parent
 live-data: ChangeDetectorRef
-joke-list: @ViewChild
+joke-list: @ViewChild, https://codecraft.tv/courses/angular/components/viewchildren-and-contentchildren/
 
 
 

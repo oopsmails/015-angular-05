@@ -6,6 +6,7 @@ import { LiveDataComponent } from './components/change-detector/live-data/live-d
 import { ParentComponent } from './components/parent/parent.component';
 import { JokeListComponent } from './components/view-child/joke-list/joke-list.component';
 import { JokeComponent } from './components/view-child/joke/joke.component';
+import { JokeListParentComponent } from './components/view-child/joke-list-parent.component';
 
 @NgModule({
   imports: [
@@ -15,9 +16,18 @@ import { JokeComponent } from './components/view-child/joke/joke.component';
       {
         path: 'sandbox/parent',
         component: ParentComponent
+      },
+      {
+        path: 'sandbox/jokelist',
+        component: JokeListParentComponent
       }
     ])
   ],
-  declarations: [ParentComponent, LiveDataComponent, JokeListComponent, JokeComponent]
+  declarations: [ParentComponent,
+    LiveDataComponent,
+    JokeListParentComponent,
+    JokeListComponent,
+    JokeComponent
+  ]
 })
 export class SandboxModule { }

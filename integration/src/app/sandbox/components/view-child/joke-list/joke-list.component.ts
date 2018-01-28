@@ -1,16 +1,18 @@
 import { Joke } from '@core/models/joke';
 import { JokeComponent } from './../joke/joke.component';
-import { Component,
+import {
+  Component,
   OnInit,
   AfterContentInit,
   AfterViewInit,
-  ViewChild, ViewChildren, ContentChild, ElementRef, QueryList } from '@angular/core';
+  ViewChild, ViewChildren, ContentChild, ElementRef, QueryList
+} from '@angular/core';
 
 
 @Component({
   selector: 'joke-list',
   template: `
-  <h4 #header>View Jokes</h4>
+  <h4 #header>View Jokes(@ViewChild)</h4>
   <joke *ngFor="let j of jokes" [joke]="j">
     <span class="setup">{{ j.setup }}?</span>
     <h1 class="punchline">{{ j.punchline }}</h1>
@@ -20,7 +22,8 @@ import { Component,
   `,
   styleUrls: ['./joke-list.component.css']
 })
-export class JokeListComponent implements OnInit, AfterContentInit,
+export class JokeListComponent implements OnInit,
+  AfterContentInit,
   AfterViewInit {
 
   jokes: Joke[] = [

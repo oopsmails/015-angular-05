@@ -10,7 +10,4 @@ export class ParentComponent {
   // for data-live component
   live = true;
   live2 = true;
-
-  // for joke-list component
-  joke: Joke = new Joke('A kid threw a lump of cheddar at me', 'I thought ‘That’s not very mature’');
 }
