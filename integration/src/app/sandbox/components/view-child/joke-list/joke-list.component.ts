@@ -31,7 +31,7 @@ export class JokeListComponent implements OnInit,
     new Joke('What kind of cheese do you use to disguise a small horse', 'Mask-a-pony (Mascarpone)')
   ];
 
-  @ViewChild(JokeComponent) jokeViewChild: JokeComponent;
+  @ViewChild(JokeComponent) jokeViewChild: JokeComponent; // this is just the very first one found, not so useful here having multiple.
   @ViewChildren(JokeComponent) jokeViewChildren: QueryList<JokeComponent>;
   @ViewChild('header') headerEl: ElementRef;
   @ContentChild(JokeComponent) jokeContentChild: JokeComponent;
@@ -44,16 +44,16 @@ export class JokeListComponent implements OnInit,
   ngOnInit() { }
 
   ngAfterContentInit() {
-    console.log(`ngAfterContentInit - jokeContentChild is ${this.jokeContentChild}`);
+    console.log(`ngAfterContentInit - jokeContentChild(projecting Joke in parent) is ${this.jokeContentChild}`, this.jokeContentChild);
   }
 
   ngAfterViewInit() {
-    console.log(`ngAfterViewInit - jokeViewChild is ${this.jokeViewChild}`);
+    console.log(`ngAfterViewInit - jokeViewChild(only very first found) is ${this.jokeViewChild}`, this.jokeViewChild);
 
     let jokes: JokeComponent[] = this.jokeViewChildren.toArray();
-    console.log(jokes);
+    console.log(`ngAfterViewInit - jokeViewChildren(Jokes in child) is this.jokeViewChildren to array: `, jokes);
 
-    console.log(`ngAfterViewInit - headerEl is ${this.headerEl}`);
+    console.log(`ngAfterViewInit - headerEl is ${this.headerEl}`, this.headerEl);
     this.headerEl.nativeElement.textContent = 'Best Joke Machine';
   }
 

@@ -9,7 +9,7 @@ import { Joke } from '@core/models/joke';
         <span class="setup">{{ joke.setup }}?</span>
         <h1 class="punchline">{{ joke.punchline }}</h1>
     </joke>
-    </joke-list>
+  </joke-list>
   `
 })
 export class JokeListParentComponent {

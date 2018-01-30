@@ -12,10 +12,10 @@ import { Joke } from '@core/models/joke';
        [hidden]="data.hide">
       <ng-content select=".punchline"></ng-content>
     </p>
-    <a class="btn btn-primary"
-       (click)="data.toggle()">Tell Me
-    </a>
   </div>
+  <a class="btn btn-primary"
+    (click)="data.toggle()">Tell Me
+  </a>
   `,
   styleUrls: ['./joke.component.css']
 })
