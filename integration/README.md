@@ -7,8 +7,12 @@ ng g c sandbox\components\live-data
 ng g c sandbox\components\view-child\joke-list
 
 parent: parent
+
 live-data: ChangeDetectorRef
+https://blog.angularindepth.com/everything-you-need-to-know-about-change-detection-in-angular-8006c51d206f
+
 joke-list: @ViewChild, https://codecraft.tv/courses/angular/components/viewchildren-and-contentchildren/
+http://www.thetechieshouse.com/use-angular-4-viewchild-5-minutes/
 
 
 
