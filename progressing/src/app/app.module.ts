@@ -32,6 +32,8 @@ import { BsNavbarComponent } from './component/bs-navbar/bs-navbar.component';
 import { BloggerComponent } from './component/blogger/blogger.component';
 import { PageThreeWaysComponent, Posts1Component, Posts2Component, Posts3Component } from './component/blogger/index';
 import { HttpClientModule } from '@angular/common/http';
+import { ApplicationLoadingDirective } from './directive/appication-loading.directive';
+import { MouseOverColorDirective } from './directive/mouseover-color.directive';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
     FavoriteComponent,
     PaginationComponent,
     InputFormatDirective,
+    ApplicationLoadingDirective,
+    MouseOverColorDirective,
     ContactFormComponent,
     SignupFormComponent,
     NewcourseFormComponent,

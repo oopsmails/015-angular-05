@@ -1,4 +1,7 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+/**
+ * https://www.concretepage.com/angular-2/angular-4-renderer2-example
+ */
 
 @Directive({
   selector: '[appInputFormat]'
