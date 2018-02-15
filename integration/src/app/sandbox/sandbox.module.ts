@@ -1,3 +1,4 @@
+import { LoadingSvgComponent } from './components/svg-circle/loading-svg.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -7,6 +8,7 @@ import { ParentComponent } from './components/parent/parent.component';
 import { JokeListComponent } from './components/view-child/joke-list/joke-list.component';
 import { JokeComponent } from './components/view-child/joke/joke.component';
 import { JokeListParentComponent } from './components/view-child/joke-list-parent.component';
+import { SvgCircleComponent } from './components/svg-circle/svg-circle.component';
 
 @NgModule({
   imports: [
@@ -18,6 +20,14 @@ import { JokeListParentComponent } from './components/view-child/joke-list-paren
         component: ParentComponent
       },
       {
+        path: 'sandbox/svgcircleok',
+        component: SvgCircleComponent
+      },
+      {
+        path: 'sandbox/svgcircle',
+        component: LoadingSvgComponent
+      },
+      {
         path: 'sandbox/jokelist',
         component: JokeListParentComponent
       }
@@ -27,7 +37,9 @@ import { JokeListParentComponent } from './components/view-child/joke-list-paren
     LiveDataComponent,
     JokeListParentComponent,
     JokeListComponent,
-    JokeComponent
+    JokeComponent,
+    SvgCircleComponent,
+    LoadingSvgComponent
   ]
 })
 export class SandboxModule { }
