@@ -16,9 +16,12 @@
   <br> live2: {{ live2 }}
 </p>
 
-
-<p>
-  <file-download></file-download>
-</p>
-
+<p></p>
+<file-download></file-download>
+<div *ngFor="let format of fileFormats" class="radio">
+  <label>
+    <input ngModel type="radio" name="format" [value]="format" (change)="fileFormatSelected(format)">
+    {{ format }}
+  </label>
+</div>
 
