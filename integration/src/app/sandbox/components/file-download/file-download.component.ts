@@ -9,9 +9,9 @@ import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
   templateUrl: './file-download.component.html'
 })
 export class FileDownloadComponent {
-  private txtUrl = 'http://localhost:8080/backendmock/downloadFile/txt?filename=testTxt.txt';
+  private txtUrl = '/backendmock/downloadFile/txt?filename=testTxt.txt'; // with proxy.conf.json
   private pdfUrl = 'http://localhost:8080/backendmock/downloadFile/pdf?filename=testPdf.pdf';
-  private xlsxUrl = 'http://localhost:8080/backendmock/downloadFile/xlsx?filename=testXlsx.xlsx';
+  private xlsxUrl = '/backendmock/downloadFile/xlsx?filename=testXlsx.xlsx';
   private docxUrl = ' http://localhost:8080/backendmock/downloadFile/docx?filename=testDocx.docx';
   private txtFileName = 'testTxt.txt';
   private pdfFileName = 'testPdf.pdf';
@@ -36,7 +36,7 @@ export class FileDownloadComponent {
   }
 
   exportFromRadio(exportData: { [key: string]: any | Array<any> }): void {
-    console.log('in onExport, exportData: ', exportData);
+    console.log('in exportFromRadio, exportData: ', exportData);
     const fileType = exportData.exportType;
     this.postRespBlob(this.getFileInfo(fileType).fileUrl).subscribe(
       blob => {
@@ -73,6 +73,7 @@ export class FileDownloadComponent {
 
   postRespBlob(url: string): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    // headers.append('Access-Control-Allow-Origin', '*');
     return this.httpClient
       .post(url
         , {} // empty POST body

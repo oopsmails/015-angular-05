@@ -54,6 +54,56 @@ in core.module.ts, because
 <div ngbDropdownMenu ...
 
 
+=======================================================
+
+====> CrossOrigin: problem
+Failed to load http://localhost:8080/backendmock/downloadFile/docx?filename=testDocx.docx: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:4200' is therefore not allowed access. The response had HTTP status code 403.
+
+==> To make localhost:4200 connect to localhost:8080
+
+--> option 1: Server side: Spring boot,
+
+Solution 1:
+Application configuration level, SpringBootBackendMockApplication, 
+@Bean
+public WebMvcConfigurer corsConfigurer() {
+    return new WebMvcConfigurerAdapter() {
+        @Override
+        public void addCorsMappings(CorsRegistry registry) {
+            registry
+                    .addMapping("/backendmock/**")
+                    .allowedOrigins("http://localhost:4200")
+                    .allowedMethods("*");
+        }
+    };
+}
+
+Solution 2:
+@RestController
+@RequestMapping("/backendmock")
+@CrossOrigin <-------------------------- add this
+public class StreamingResponseBodyController
+
+Solution 3:
+
+response.setHeader("Access-Control-Allow-Origin", "*"); //ok, without WebMvcConfigurer in SpringBootBackendMockApplication
+
+--> option 2: Client side: Angular,
+a. Add proxy.conf.json in the same folder which package.json resides.
+b. package.json, script,
+"start": "ng serve --proxy-config proxy.conf.json",
+c. Define URL ...
+ private txtUrl = '/backendmock/downloadFile/txt?filename=testTxt.txt'; // with proxy.conf.json
+ vs.
+ private pdfUrl = 'http://localhost:8080/backendmock/downloadFile/pdf?filename=testPdf.pdf'; // send directly to server
+d. use "npm start" to start server instead of "ng serve"
+
+seeing following in log ...
+
+[HPM] POST /backendmock/downloadFile/xlsx?filename=testXlsx.xlsx -> http://localhost:8080
+[HPM] POST /backendmock/downloadFile/txt?filename=testTxt.txt -> http://localhost:8080
+
+=======================================================
 
 
 
