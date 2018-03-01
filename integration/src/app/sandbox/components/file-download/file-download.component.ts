@@ -51,7 +51,6 @@ export class FileDownloadComponent {
 
   exportWatchlist(exportForm) {
     console.log('exportForm: ', exportForm);
-    const wlUrl = 'https://webbroker.delta.td.com/waw/brk/wb/services/rest/v1/export';
 
     // this.httpClient
     //   .post(this.xlsxUrl, {
