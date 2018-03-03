@@ -7,8 +7,8 @@ export class DataProviderService {
 
   constructor() {
     setInterval(() => {
-      this.data = this.data * 2;
-    }, 2000);
+      this.data = this.data + 1;
+    }, 1000);
   }
 
 }
