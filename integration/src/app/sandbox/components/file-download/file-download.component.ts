@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { saveAs } from 'file-saver';
 import { Observable } from 'rxjs/Observable';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { WINDOW } from 'shared/services/window-provider.service';
 
 @Component({
   selector: 'file-download',
@@ -22,7 +23,8 @@ export class FileDownloadComponent {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private httpClient: HttpClient) {
+    private httpClient: HttpClient,
+    @Inject(WINDOW) private window: Window) {
       this.exportFrameSrc = sanitizer.bypassSecurityTrustResourceUrl(this.xlsxUrl);
     }
 
@@ -49,7 +51,7 @@ export class FileDownloadComponent {
     );
   }
 
-  exportWatchlist(exportForm) {
+  exportBlob(exportForm) {
     console.log('exportForm: ', exportForm);
 
     // this.httpClient
@@ -72,7 +74,9 @@ export class FileDownloadComponent {
   }
 
   postRespBlob(url: string): Observable<any> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Host', 'abc.com:4200');
     // headers.append('Access-Control-Allow-Origin', '*');
     return this.httpClient
       .post(url
@@ -91,11 +95,11 @@ export class FileDownloadComponent {
   }
 
   saveBlobToFile(blob: Blob, fileName: string) {
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, fileName);
+    if (this.window.navigator && this.window.navigator.msSaveOrOpenBlob) {
+      this.window.navigator.msSaveOrOpenBlob(blob, fileName);
     } else {
       const a = document.createElement('a');
-      a.href = window.URL.createObjectURL(blob);
+      a.href = this.window.URL.createObjectURL(blob);
       a.target = '_blank';
       a.download = fileName;
       document.body.appendChild(a);

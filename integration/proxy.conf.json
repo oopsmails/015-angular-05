@@ -1,6 +1,6 @@
 {
     "/backendmock/*": {
-        "target": "http://localhost:8080",
+        "target": "http://dellsmall:8080",
         "secure": false,
         "logLevel": "debug"
     }

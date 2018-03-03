@@ -4,6 +4,9 @@ see https://scotch.io/tutorials/3-ways-to-pass-async-data-to-angular-2-child-com
 
 3 ways to pass async data to child components.
 
+-- index.ts is used in app.module.ts
+import { PageThreeWaysComponent, Posts1Component, Posts2Component, Posts3Component } from './component/blogger/index';
+
 ====> pagination.component
 
 my implementation of pagination.

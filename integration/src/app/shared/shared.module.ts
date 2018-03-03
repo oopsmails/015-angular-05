@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { DataProviderService } from 'shared/services/data-provider.service';
+import { WINDOW_PROVIDERS } from 'shared/services/window-provider.service';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { DataProviderService } from 'shared/services/data-provider.service';
   ],
   declarations: [],
   providers: [
-    DataProviderService
+    DataProviderService,
+    WINDOW_PROVIDERS
   ]
 })
 export class SharedModule { }
