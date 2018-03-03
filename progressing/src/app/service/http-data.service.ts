@@ -34,7 +34,7 @@ constructor(private url: string, private http: Http) { }
 
   update(resource) {
     return this.http.patch(this.url + '/' + resource.id, JSON.stringify({ isRead: true }))
-      .map(response => response.json())      
+      .map(response => response.json())
       .catch(this.handleError);
   }
 
@@ -45,12 +45,12 @@ constructor(private url: string, private http: Http) { }
   }
 
   private handleError(error: Response) {
-    if (error.status === 400)
+    if (error.status === 400) {
       return Observable.throw(new BadInput(error.json()));
-  
-    if (error.status === 404)
+    }
+    if (error.status === 404) {
       return Observable.throw(new NotFoundError());
-    
+    }
     return Observable.throw(new AppError(error));
   }
 }

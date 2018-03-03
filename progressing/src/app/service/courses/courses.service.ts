@@ -5,8 +5,8 @@ import { Course } from '../../model/course';
 export class CoursesService {
   courses: Course[] = [
     {
-      "courseNumber": "111",
-      "courseName": "Angular"
+      'courseNumber': '111',
+      'courseName': 'Angular'
     }
   ];
 
