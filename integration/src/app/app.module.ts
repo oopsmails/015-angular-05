@@ -6,6 +6,8 @@ import { SharedModule } from 'shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { ProgressingModule } from './progressing/progressing.module';
+import { ParentComponent } from './sandbox/components/parent/parent.component';
 import { SandboxModule } from './sandbox/sandbox.module';
 
 @NgModule({
@@ -17,8 +19,10 @@ import { SandboxModule } from './sandbox/sandbox.module';
     SharedModule,
     CoreModule,
     SandboxModule,
+    ProgressingModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent }
+      { path: '', component: ParentComponent },
+      { path: 'home', component: HomeComponent }
     ])
   ],
   providers: [],
