@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { ProgressingModule } from './progressing/progressing.module';
 import { ParentComponent } from './sandbox/components/parent/parent.component';
 import { SandboxModule } from './sandbox/sandbox.module';
+import { NotFoundComponent } from './progressing/components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SandboxModule } from './sandbox/sandbox.module';
     ProgressingModule,
     RouterModule.forRoot([
       { path: '', component: ParentComponent },
-      { path: 'home', component: HomeComponent }
+      { path: 'home', component: HomeComponent },
+      { path: '**', component: NotFoundComponent }
     ])
   ],
   providers: [],

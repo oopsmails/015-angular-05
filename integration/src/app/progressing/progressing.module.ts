@@ -3,7 +3,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'shared/shared.module';
 
+import {
+    BloggerComponent, PageThreeWaysComponent, Posts1Component, Posts2Component, Posts3Component
+} from './components/blogger/index';
 import { ConsumingHttpComponent } from './components/consuming-http/consuming-http.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { Pagination2Component } from './components/pagination/pagination2.component';
 import { ProgressingHomeComponent } from './components/progressing-home/progressing-home.component';
@@ -25,6 +29,10 @@ import { MouseOverColorDirective } from './directive/mouseover-color.directive';
                 path: 'progressing/pagination',
                 component: ConsumingHttpComponent
             },
+            {
+                path: 'progressing/3ways',
+                component: PageThreeWaysComponent
+            }
         ])
     ],
     declarations: [
@@ -32,6 +40,8 @@ import { MouseOverColorDirective } from './directive/mouseover-color.directive';
         ConsumingHttpComponent,
         PaginationComponent,
         Pagination2Component,
+        PageThreeWaysComponent, BloggerComponent, Posts1Component, Posts2Component, Posts3Component,
+        NotFoundComponent,
 
         InputFormatDirective,
         ApplicationLoadingDirective,
@@ -42,6 +52,8 @@ import { MouseOverColorDirective } from './directive/mouseover-color.directive';
         ProgressingHomeComponent,
         PaginationComponent,
         Pagination2Component,
+        PageThreeWaysComponent, BloggerComponent, Posts1Component, Posts2Component, Posts3Component,
+        NotFoundComponent,
 
         InputFormatDirective,
         ApplicationLoadingDirective,
