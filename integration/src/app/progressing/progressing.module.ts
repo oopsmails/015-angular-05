@@ -20,6 +20,10 @@ import { CardhoverDirective } from './directive/cardhover.directive';
 import { InputFormatDirective } from './directive/input-format.directive';
 import { MouseOverColorDirective } from './directive/mouseover-color.directive';
 import { FavoriteComponent } from './components/favorite/favorite.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { SignupFormComponent } from './components/signup-form/signup-form.component';
+import { NewcourseFormComponent } from './components/newcourse-form/newcourse-form.component';
+import { CoursesComponent } from './components/courses/courses.component';
 
 @NgModule({
     imports: [
@@ -52,6 +56,10 @@ import { FavoriteComponent } from './components/favorite/favorite.component';
         CardHostingComponent,
         CardComponent,
         FavoriteComponent,
+        ContactFormComponent,
+        SignupFormComponent,
+        NewcourseFormComponent,
+        CoursesComponent,
 
         InputFormatDirective,
         ApplicationLoadingDirective,
@@ -69,6 +77,10 @@ import { FavoriteComponent } from './components/favorite/favorite.component';
         CardHostingComponent,
         CardComponent,
         FavoriteComponent,
+        ContactFormComponent,
+        SignupFormComponent,
+        NewcourseFormComponent,
+        CoursesComponent,
 
         InputFormatDirective,
         ApplicationLoadingDirective,
