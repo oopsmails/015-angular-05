@@ -10,7 +10,7 @@ export class ApplicationLoadingDirective implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         const parent = this.renderer.parentNode(this.elRef.nativeElement);
-        console.log('ApplicationLoadingDirective, ngOnChanges', changes.applicationLoading);
+        // console.log('ApplicationLoadingDirective, ngOnChanges', changes.applicationLoading);
         if (changes.applicationLoading.currentValue) {
             this.renderer.setStyle(parent, 'color', 'blue');
         } else {

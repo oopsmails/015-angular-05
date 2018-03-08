@@ -1,0 +1,28 @@
+<div class="progressing-steps">
+  <!-- <div class="progressing-steps__header">
+    <h5 class="vh"
+    >
+    ABC
+    </h5>
+  </div> -->
+
+    <div class="progressing-steps__steps">
+      <div class="progressing-steps__bar"></div>
+    <div steps-container>
+      <ng-container *ngFor="let step of steps">
+        <app-step
+          [isActive]="step.active"
+          [isComplete]="step.complete"
+          [isFirst]="step.first"
+          [isLast]="step.last"
+          [stepId]="step.stepId"
+          [stepDescription]="step.stepDescription"
+          [position]="step.position"
+          (click)="onStepClick(step.position)"
+        >
+        </app-step>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

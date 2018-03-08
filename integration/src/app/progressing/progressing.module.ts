@@ -6,15 +6,20 @@ import { SharedModule } from 'shared/shared.module';
 import {
     BloggerComponent, PageThreeWaysComponent, Posts1Component, Posts2Component, Posts3Component
 } from './components/blogger/index';
+import { CardHostingComponent } from './components/card-hosting/card-hosting.component';
+import { CardComponent } from './components/card-hosting/card.component';
 import { ConsumingHttpComponent } from './components/consuming-http/consuming-http.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { Pagination2Component } from './components/pagination/pagination2.component';
 import { ProgressingHomeComponent } from './components/progressing-home/progressing-home.component';
+import { StepComponent } from './components/steps/step.component';
+import { StepsComponent } from './components/steps/steps.component';
 import { ApplicationLoadingDirective } from './directive/appication-loading.directive';
 import { CardhoverDirective } from './directive/cardhover.directive';
 import { InputFormatDirective } from './directive/input-format.directive';
 import { MouseOverColorDirective } from './directive/mouseover-color.directive';
+import { FavoriteComponent } from './components/favorite/favorite.component';
 
 @NgModule({
     imports: [
@@ -42,6 +47,11 @@ import { MouseOverColorDirective } from './directive/mouseover-color.directive';
         Pagination2Component,
         PageThreeWaysComponent, BloggerComponent, Posts1Component, Posts2Component, Posts3Component,
         NotFoundComponent,
+        StepsComponent,
+        StepComponent,
+        CardHostingComponent,
+        CardComponent,
+        FavoriteComponent,
 
         InputFormatDirective,
         ApplicationLoadingDirective,
@@ -54,6 +64,11 @@ import { MouseOverColorDirective } from './directive/mouseover-color.directive';
         Pagination2Component,
         PageThreeWaysComponent, BloggerComponent, Posts1Component, Posts2Component, Posts3Component,
         NotFoundComponent,
+        StepsComponent,
+        StepComponent,
+        CardHostingComponent,
+        CardComponent,
+        FavoriteComponent,
 
         InputFormatDirective,
         ApplicationLoadingDirective,

@@ -1,0 +1,16 @@
+<div class="progressing-steps__step"
+[class.progressing-steps__step--active]="active"
+[class.progressing-steps__step--complete]="complete"
+[class.progressing-steps__step--first]="first"
+[class.progressing-steps__step--last]="last"
+>
+<a href="javascript:void(0)"
+role="button"
+attr.aria-pressed="active"
+attr.aria-disabled="selectable"
+>
+<span class="progressing-steps__step__number">{{ stepId }}</span>
+<span class="progressing-steps__step__title" [textContent]="stepDescription"></span>
+</a>
+
+</div>
