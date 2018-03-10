@@ -6,10 +6,9 @@ import { SharedModule } from 'shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { ProgressingModule } from './progressing/progressing.module';
-import { ParentComponent } from './sandbox/components/parent/parent.component';
-import { SandboxModule } from './sandbox/sandbox.module';
 import { NotFoundComponent } from './progressing/components/not-found/not-found.component';
+import { ProgressingModule } from './progressing/progressing.module';
+import { SandboxModule } from './sandbox/sandbox.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,7 @@ import { NotFoundComponent } from './progressing/components/not-found/not-found.
     SandboxModule,
     ProgressingModule,
     RouterModule.forRoot([
-      { path: '', component: ParentComponent },
+      { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: '**', component: NotFoundComponent }
     ])

@@ -7,11 +7,10 @@ import { FileDownloadComponent } from '../file-download/file-download.component'
 import { FileDownloadService, FileFormats } from 'shared/services/file-download/file-download.service';
 
 @Component({
-  selector: 'app-parent',
-  templateUrl: './parent.component.html',
-  styleUrls: ['./parent.component.css']
+  selector: 'app-sandbox-home',
+  templateUrl: './sandbox-home.component.html'
 })
-export class ParentComponent {
+export class SandboxHomeComponent {
   // for data-live component
   live = true;
   live2 = true;
