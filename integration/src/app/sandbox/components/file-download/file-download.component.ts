@@ -4,34 +4,36 @@ import { saveAs } from 'file-saver';
 import { Observable } from 'rxjs/Observable';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { WINDOW } from 'shared/services/window-provider.service';
+import { FileDownloadService } from 'shared/services/file-download/file-download.service';
 
 @Component({
   selector: 'file-download',
   templateUrl: './file-download.component.html'
 })
 export class FileDownloadComponent {
-  private txtUrl = '/backendmock/downloadFile/txt?filename=testTxt.txt'; // with proxy.conf.json
-  private pdfUrl = 'http://localhost:8080/backendmock/downloadFile/pdf?filename=testPdf.pdf';
-  private xlsxUrl = '/backendmock/downloadFile/xlsx?filename=testXlsx.xlsx';
-  private docxUrl = ' http://localhost:8080/backendmock/downloadFile/docx?filename=testDocx.docx';
-  private txtFileName = 'testTxt.txt';
-  private pdfFileName = 'testPdf.pdf';
-  private xlsxFileName = 'testXlsx.xlsx';
-  private docxFileName = 'testDocx.docx';
+  // private txtUrl = '/backendmock/downloadFile/txt?filename=testTxt.txt'; // with proxy.conf.json
+  // private pdfUrl = 'http://localhost:8080/backendmock/downloadFile/pdf?filename=testPdf.pdf';
+  // private xlsxUrl = '/backendmock/downloadFile/xlsx?filename=testXlsx.xlsx';
+  // private docxUrl = ' http://localhost:8080/backendmock/downloadFile/docx?filename=testDocx.docx';
+  // private txtFileName = 'testTxt.txt';
+  // private pdfFileName = 'testPdf.pdf';
+  // private xlsxFileName = 'testXlsx.xlsx';
+  // private docxFileName = 'testDocx.docx';
 
   exportFrameSrc: SafeResourceUrl;
 
   constructor(
     private sanitizer: DomSanitizer,
+    private fileDownloadService: FileDownloadService,
     private httpClient: HttpClient,
     @Inject(WINDOW) private window: Window) {
-      this.exportFrameSrc = sanitizer.bypassSecurityTrustResourceUrl(this.xlsxUrl);
+      this.exportFrameSrc = sanitizer.bypassSecurityTrustResourceUrl(this.fileDownloadService.getDownloadFileUrl('XLSX'));
     }
 
   exportFile() {
-    this.getBlob(this.xlsxUrl).subscribe(
+    this.getBlob(this.fileDownloadService.getDownloadFileUrl('XLSX')).subscribe(
       blob => {
-      saveAs(blob, this.xlsxFileName);
+      saveAs(blob, this.fileDownloadService.getDownloadFileName('XLSX'));
       },
       err => { }
     );
@@ -39,11 +41,11 @@ export class FileDownloadComponent {
 
   exportFromRadio(exportData: { [key: string]: any | Array<any> }): void {
     console.log('in exportFromRadio, exportData: ', exportData);
-    const fileType = exportData.exportType;
-    this.postRespBlob(this.getFileInfo(fileType).fileUrl).subscribe(
+    const fileType = exportData.fileType;
+    this.postRespBlob(this.fileDownloadService.getDownloadFileUrl(fileType)).subscribe(
       blob => {
         console.log('blob: ', blob);
-        this.saveBlobToFile(blob, this.getFileInfo(fileType).fileName);
+        this.saveBlobToFile(blob, this.fileDownloadService.getDownloadFileName(fileType));
       },
       err => {
         console.log('err: ', err);
@@ -62,10 +64,10 @@ export class FileDownloadComponent {
     // });
 
     const fileType = 'docx';
-    this.postRespBlob(this.getFileInfo(fileType).fileUrl).subscribe(
+    this.postRespBlob(this.fileDownloadService.getDownloadFileUrl(fileType)).subscribe(
       blob => {
         console.log('blob: ', blob);
-        this.saveBlobToFile(blob, this.getFileInfo(fileType).fileName);
+        this.saveBlobToFile(blob, this.fileDownloadService.getDownloadFileName(fileType));
       },
       err => {
         console.log('err: ', err);
@@ -107,38 +109,38 @@ export class FileDownloadComponent {
     }
   }
 
-  private getFileInfo(fileType: string): any {
-    switch (fileType) {
-      case 'xlsx': {
-         return {
-           fileName: this.xlsxFileName,
-           fileUrl: this.xlsxUrl
-         };
-      }
-      case 'docx': {
-        return {
-          fileName: this.docxFileName,
-          fileUrl: this.docxUrl
-        };
-      }
-      case 'pdf': {
-        return {
-          fileName: this.pdfFileName,
-          fileUrl: this.pdfUrl
-        };
-      }
-      case 'txt': {
-        return {
-          fileName: this.txtFileName,
-          fileUrl: this.txtUrl
-        };
-      }
-      default: {
-        return {
-          fileName: this.xlsxFileName,
-          fileUrl: this.xlsxUrl
-        };
-      }
-   }
-  }
+  // private getFileInfo(fileType: string): any {
+  //   switch (fileType) {
+  //     case 'xlsx': {
+  //        return {
+  //          fileName: this.xlsxFileName,
+  //          fileUrl: this.xlsxUrl
+  //        };
+  //     }
+  //     case 'docx': {
+  //       return {
+  //         fileName: this.docxFileName,
+  //         fileUrl: this.docxUrl
+  //       };
+  //     }
+  //     case 'pdf': {
+  //       return {
+  //         fileName: this.pdfFileName,
+  //         fileUrl: this.pdfUrl
+  //       };
+  //     }
+  //     case 'txt': {
+  //       return {
+  //         fileName: this.txtFileName,
+  //         fileUrl: this.txtUrl
+  //       };
+  //     }
+  //     default: {
+  //       return {
+  //         fileName: this.xlsxFileName,
+  //         fileUrl: this.xlsxUrl
+  //       };
+  //     }
+  //  }
+  // }
 }

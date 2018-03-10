@@ -51,19 +51,28 @@ export class ConsumingHttpComponent implements OnInit {
       this.paginationConfig.numberOfPageCombine = 3;
 
       this.allPosts = postsRet;
-      const startIndex = pageInfo.page * pageInfo.size;
-      const endIndex = (startIndex + pageInfo.size) < this.allPosts.length ? (startIndex + pageInfo.size) : this.allPosts.length;
-      this.posts = postsRet.slice(startIndex, endIndex);
+      this.getData({ pageClicked: 0, pageRange: [] });
       this.loading = false;
     });
   }
 
-  getPostsNoHttpCall(pageInfo): void {
-    this.loading = true;
-    const startIndex = pageInfo.page * pageInfo.size;
-    const endIndex = (startIndex + pageInfo.size) < this.allPosts.length ? (startIndex + pageInfo.size) : this.allPosts.length;
+  // getPostsNoHttpCall(pageInfo: { page: number, size: number }): void {
+  //   this.loading = true;
+  //   this.getData({ pageClicked: pageInfo.page, pageRange: [] });
+  //   // const startIndex = pageInfo.page * pageInfo.size;
+  //   // const endIndex = (startIndex + pageInfo.size) < this.allPosts.length ? (startIndex + pageInfo.size) : this.allPosts.length;
+  //   // this.posts = this.allPosts.slice(startIndex, endIndex);
+  //   this.loading = false;
+  // }
+
+  private getData(pageNumberClickedRet: { pageClicked: number, pageRange?: Array<number> }): void {
+    this.itemCount = this.allPosts.length;
+    const startIndex = pageNumberClickedRet.pageClicked * this.itemsPerPage;
+    const endIndex = (startIndex + this.itemsPerPage) < this.allPosts.length ?
+      (startIndex + this.itemsPerPage) : this.allPosts.length;
+    console.log('startIndex=', startIndex);
+    console.log('endIndex=', endIndex);
     this.posts = this.allPosts.slice(startIndex, endIndex);
-    this.loading = false;
   }
 
   // getPostsSubject(pageInfo): void {
@@ -141,12 +150,14 @@ export class ConsumingHttpComponent implements OnInit {
       });
   }
 
-  onPageChange(indexRet: number[]): void {
+  onPageChange(pageNumberClickedRet: { pageClicked: number, pageRange?: Array<number> }): void {
     // indexRet.forEach((item: number) => {
     //   console.log('pageClick, index array: ', item);
     // });
-    this.pageNumber = indexRet[0];
-    this.getPostsNoHttpCall({ page: this.pageNumber, size: this.itemsPerPage });
+    // this.pageNumber = indexRet[0];
+    // this.getPostsNoHttpCall({ page: this.pageNumber, size: this.itemsPerPage });
+
+    this.getData(pageNumberClickedRet);
   }
 
 }

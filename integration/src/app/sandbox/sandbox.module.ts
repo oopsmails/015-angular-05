@@ -10,6 +10,8 @@ import { SvgCircleComponent } from './components/svg-circle/svg-circle.component
 import { JokeListParentComponent } from './components/view-child/joke-list-parent.component';
 import { JokeListComponent } from './components/view-child/joke-list/joke-list.component';
 import { JokeComponent } from './components/view-child/joke/joke.component';
+import { MsgBetweenComponent } from './components/msg-between/msg-between.component';
+import { FileDownloadIframeComponent } from './components/file-download-iframe/file-download-iframe.component';
 
 @NgModule({
   imports: [
@@ -41,7 +43,9 @@ import { JokeComponent } from './components/view-child/joke/joke.component';
     JokeComponent,
     SvgCircleComponent,
     LoadingSvgComponent,
-    FileDownloadComponent
+    FileDownloadComponent,
+    MsgBetweenComponent,
+    FileDownloadIframeComponent
   ]
 })
 export class SandboxModule { }

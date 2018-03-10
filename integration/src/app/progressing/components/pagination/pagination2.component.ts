@@ -18,7 +18,8 @@ export class Pagination2Component implements OnInit, OnChanges {
 
   @Input() paginationConfig: PaginationConfig;
 
-  @Output('pageClick2') pageClickEmitter: EventEmitter<number[]> = new EventEmitter();
+  // @Output('pageClick2') pageClickEmitter: EventEmitter<number[]> = new EventEmitter();
+  @Output('pageClick2') pageClickEmitter: EventEmitter<{ pageClicked: number, pageRange?: Array<number> }> = new EventEmitter();
 
   numOfPages = 0;
   prevLabel = 'PREVIOUS';
@@ -73,23 +74,20 @@ export class Pagination2Component implements OnInit, OnChanges {
 
   pageClick2(index: number): void {
     console.log('pageClick2, index: ', index);
-    // console.log('Pagination2Component, ngOnInit: itemcount', this.itemCount);
     if (!this.paginationConfig.disableNavigation) {
       this.setCurrentPage(index);
-      let indexArray: number[] = [];
+      let indexArray: Array<number> = [];
       if (this.paginationConfig.numberOfPageCombine > 1) {
         if (index >= this.getLastPageNumber()) {
           indexArray = this.range(this.getLastPageNumber(), this.numOfPages);
         } else {
-          indexArray = Array.from({ length: (this.paginationConfig.numberOfPageCombine) }, (v, k) => k + index);
+          indexArray = Array.from({ length: (this.paginationConfig.numberOfPageCombine) }, (v: number, k: number) => k + index);
         }
       } else {
-        // call service based on pageNumberClicked to get data
-        // console.log('pageClick, pageNumberClicked: ', index);
         indexArray.push(index);
       }
 
-      this.pageClickEmitter.emit(indexArray);
+      this.pageClickEmitter.emit({ pageClicked: index, pageRange: indexArray });
     }
   }
 

@@ -1,0 +1,11 @@
+<div class="oopsmails-angular-hide">
+  <form id="{{fileDownloadFormId}}"
+        [action]="fileDownloadServiceUrl"
+        method="POST"
+        target="fileDownloadFrame"
+        accept-charset="UTF-8">
+    <textarea type="text" name="fileDownloadRequest" value="{{fileDownloadRequest}}"></textarea><br>
+    <textarea type="text" name="xConsumerName" value="{{xConsumerName}}"></textarea><br>
+  </form>
+  <iframe name="fileDownloadFrame" src="about:blank"></iframe>
+</div>
