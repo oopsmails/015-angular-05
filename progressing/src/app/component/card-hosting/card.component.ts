@@ -27,7 +27,7 @@ export class CardComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.sub = Observable.interval(2000)
         .subscribe((val) => {
-            console.log('called');
+            // console.log('called');
             this.isLoading = !this.isLoading;
         });
     }
