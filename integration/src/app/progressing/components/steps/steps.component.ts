@@ -22,7 +22,7 @@ export class StepsComponent implements OnInit {
   ngOnInit(): void {
     console.log('StepsComponent, ngOnInit, steps.size: ', this.steps.length);
     this.steps.forEach((item: Step) => {
-      // console.log('tdWbSteps, item: ', JSON.stringify(item));
+      // console.log('StepsComponent, item: ', JSON.stringify(item));
     });
   }
 
